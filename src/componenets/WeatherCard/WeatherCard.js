@@ -14,7 +14,7 @@ const weatherOptions = [
     {url: require('../../images/night/rain.svg').default, day: false, type: 'rain'},
 ]
 
-const WeatherCard = ({ day, type, weatherTemp = 0 }) => {
+const WeatherCard = ({ day, type, weatherTemp = '' }) => {
     console.log('weather card')
 
     const imageSource = weatherOptions.filter((i) => {
