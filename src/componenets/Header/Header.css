@@ -1,19 +1,44 @@
+@font-face {
+    font-family: 'Familjen Grotesk';
+    src: url('../../../public/fonts/Familjen_Grotesk/FamiljenGrotesk-Regular.ttf');
+}
+
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     min-height: 60px;
     padding: 0 20px;
+    font-family: 'Familjen Grotesk';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    width: 100%;
+    color: #000000;
 }
   
 .header__logo {
-display: flex;
-gap: 20px;
-align-items: center;
+    display: flex;
+    gap: 20px;
+    align-items: center;
 }
 
 .header__avatar-logo {
-display: flex;
-gap: 20px;
-align-items: center;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.header__button {
+    border: none;
+    background-color: transparent;
+    font-family: 'Familjen Grotesk';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    width: 100%;
+    color: #000000;
+    cursor: pointer;
 }
