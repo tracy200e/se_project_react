@@ -37,38 +37,40 @@ function App() {
 
   return (
     <div>
-      <Header onCreateModal={handleCreateModal}/>
-      <Main weatherTemp={temp} onSelectCard={handleSelectedCard}/>
-      <Footer />
-      {activeModal === 'create' && (
-        <ModalWithForm title='New Garment' onClose={handleCloseModal}>
-          <label>
-            Name
-            <input type='text' name='name' minLength='1' maxLength='30' />
-          </label>
-          <label>
-            Image
-            <input type='url' name='link' minLength='1' maxLength='30' />
-          </label>
-          <p>Select the weather type:</p>
-          <div>
+      <body className='app_page'>
+        <Header onCreateModal={handleCreateModal}/>
+        <Main weatherTemp={temp} onSelectCard={handleSelectedCard}/>
+        <Footer />
+        {activeModal === 'create' && (
+          <ModalWithForm title='New Garment' onClose={handleCloseModal}>
+            <label>
+              Name
+              <input type='text' name='name' minLength='1' maxLength='30' />
+            </label>
+            <label>
+              Image
+              <input type='url' name='link' minLength='1' maxLength='30' />
+            </label>
+            <p>Select the weather type:</p>
             <div>
-              <input type='radio' id='hot' value='hot'/>
-              <label> Hot</label>
+              <div>
+                <input type='radio' id='hot' value='hot'/>
+                <label> Hot</label>
+              </div>
+              <div>
+                <input type='radio' id='warm' value='warm'/>
+                <label> Warm</label>
+              </div>
+              <div>
+                <input type='radio' id='cold' value='cold'/>
+                <label> Cold</label>
+              </div>
             </div>
-            <div>
-              <input type='radio' id='warm' value='warm'/>
-              <label> Warm</label>
-            </div>
-            <div>
-              <input type='radio' id='cold' value='cold'/>
-              <label> Cold</label>
-            </div>
-          </div>
-        </ModalWithForm>
-      )}
-      {activeModal === 'preview' && <ItemModal selectedCard={selectedCard} onClose={handleCloseModal} />}
-    </div>
+          </ModalWithForm>
+          )}
+          {activeModal === 'preview' && <ItemModal selectedCard={selectedCard} onClose={handleCloseModal} />}
+        </body>
+      </div>
   );
 }
 

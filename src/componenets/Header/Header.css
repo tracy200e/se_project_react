@@ -8,13 +8,12 @@
     justify-content: space-between;
     align-items: center;
     min-height: 60px;
-    padding: 0 20px;
+    padding: 20px 20px;
     font-family: 'Familjen Grotesk';
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
     line-height: 24px;
-    width: 100%;
     color: #000000;
 }
   
