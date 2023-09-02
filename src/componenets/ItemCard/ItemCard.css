@@ -1,0 +1,26 @@
+.card {
+    display: flex;
+    position: relative;
+    justify-content: center;
+}
+
+.card_container {
+    display: flex;
+    align-items: center;
+    background-color: #FFFFFF;
+    border-radius: 4px;
+    padding: 2px 12px;
+}
+
+.card_name {
+    font-size: 16px;
+    line-height: 20px;
+}
+
+.card_title {
+    display: flex;
+    position: absolute;
+    top: 10px;
+    gap: 8px;
+    color: rgba(0, 0, 0, 0.6);
+}
