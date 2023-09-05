@@ -1,10 +1,4 @@
-@font-face {
-    font-family: 'Familjen Grotesk';
-    src: url('../../../public/fonts/Familjen_Grotesk/FamiljenGrotesk-Regular.ttf');
-}
-
 .footer {
-    font-family: 'Familjen Grotesk';
     font-style: normal;
     font-weight: 500;
     font-size: 16px;

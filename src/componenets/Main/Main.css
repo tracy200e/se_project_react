@@ -1,10 +1,10 @@
 @font-face {
-    font-family: 'Familjen Grotesk';
-    src: url('../../../public/fonts/Familjen_Grotesk/FamiljenGrotesk-Regular.ttf');
+    font-family: 'Cabinet Grotesk';
+    src: url('../../../public/fonts/Cabinet_Grotesk/CabinetGrotesk-Regular.woff');
 }
 
 .card_section {
-    font-family: 'Familjen Grotesk';
+    font-family: 'Cabinet Grotesk';
     font-style: normal;
     font-weight: 700;
     font-size: 20px;

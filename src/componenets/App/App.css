@@ -1,7 +1,12 @@
+@font-face {
+    font-family: 'Cabinet Grotesk';
+    src: url('../../../public/fonts/Cabinet_Grotesk/CabinetGrotesk-Regular.woff');
+}
+
 .app_page {
     min-width: 320px;
     max-width: 1440px;
-    font-family: 'Familjen Grotesk';
+    font-family: 'Cabinet Grotesk';
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
@@ -59,4 +64,24 @@
     justify-content: space-between;
     margin-top: 20px;
     padding: 0 20px;
+}
+
+.form__input {
+    margin-top: 24px;
+}
+
+.form__text-input {
+    max-width: 490px;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #000000;
+    font-family: 'Cabinet Grotesk';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    margin-top: 8px;
+}
+
+.form__text-input:focus {
+    outline: none;
 }
