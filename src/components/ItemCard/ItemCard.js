@@ -1,5 +1,5 @@
 import "./ItemCard.css";
-import like_button from "../../images/like.svg";
+import likeButton from "../../images/like.svg";
 
 const ItemCard = ({ item, onSelectCard }) => {
   return (
@@ -13,7 +13,7 @@ const ItemCard = ({ item, onSelectCard }) => {
         />
         <div className="card_title">
           <div className="card_name">{item.name}</div>
-          <img src={like_button} className="card_like" alt="like button" />
+          <img src={likeButton} className="card_like" alt="like button" />
         </div>
       </div>
     </div>
