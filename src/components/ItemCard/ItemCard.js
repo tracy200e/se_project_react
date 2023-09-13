@@ -9,10 +9,10 @@ const ItemCard = ({ item, onSelectCard }) => {
           src={item.link}
           className="card_image"
           onClick={() => onSelectCard(item)}
-          alt="suggestion card"
+          alt={item.name}
         />
         <div className="card_title">
-          <div className="card_name">{item.name}</div>
+          <h3 className="card_name">{item.name}</h3>
           <img src={likeButton} className="card_like" alt="like button" />
         </div>
       </div>
