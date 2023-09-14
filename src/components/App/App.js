@@ -77,19 +77,19 @@ function App() {
               <div>
                 <div>
                   <label>
-                    <input type="radio" id="hot" value="hot" />
+                    <input name="weatherType" type="radio" id="hot" value="hot" />
                     Hot
                   </label>
                 </div>
                 <div>
                   <label>
-                    <input type="radio" id="warm" value="warm" />
+                    <input name="weatherType" type="radio" id="warm" value="warm" />
                     Warm
                   </label>
                 </div>
                 <div>
                   <label>
-                    <input type="radio" id="cold" value="cold" />
+                    <input name="weatherType" type="radio" id="cold" value="cold" />
                     Cold
                   </label>
                 </div>
