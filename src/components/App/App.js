@@ -30,6 +30,9 @@ function App() {
       const temperature = parseWeatherData(data);
       console.log(temperature);
       setTemp(temperature);
+    })
+    .catch(error => {
+      console.error(`Error: ${error.status}`);
     });
   }, []);
 
