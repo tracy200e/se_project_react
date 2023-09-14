@@ -1,6 +1,6 @@
 import "./Header.css";
-import Logo from "../../images/logo.svg";
-import Avatar from "../../images/avatar.svg";
+import logo from "../../images/logo.svg";
+import avatar from "../../images/avatar.svg";
 
 const Header = ({ onCreateModal }) => {
   console.log("Header");
@@ -9,7 +9,7 @@ const Header = ({ onCreateModal }) => {
     <header className="header">
       <div className="header__logo">
         <div>
-          <img src={Logo} alt="logo" />
+          <img src={logo} alt="logo" />
         </div>
         <div>Date</div>
       </div>
@@ -25,7 +25,7 @@ const Header = ({ onCreateModal }) => {
         </div>
         <div>Name</div>
         <div>
-          <img src={Avatar} alt="logo" />
+          <img src={avatar} alt="logo" />
         </div>
       </div>
     </header>

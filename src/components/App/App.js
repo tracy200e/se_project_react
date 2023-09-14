@@ -76,16 +76,22 @@ function App() {
               <p>Select the weather type:</p>
               <div>
                 <div>
-                  <input type="radio" id="hot" value="hot" />
-                  <label> Hot</label>
+                  <label>
+                    <input type="radio" id="hot" value="hot" />
+                    Hot
+                  </label>
                 </div>
                 <div>
-                  <input type="radio" id="warm" value="warm" />
-                  <label> Warm</label>
+                  <label>
+                    <input type="radio" id="warm" value="warm" />
+                    Warm
+                  </label>
                 </div>
                 <div>
-                  <input type="radio" id="cold" value="cold" />
-                  <label> Cold</label>
+                  <label>
+                    <input type="radio" id="cold" value="cold" />
+                    Cold
+                  </label>
                 </div>
               </div>
             </div>
