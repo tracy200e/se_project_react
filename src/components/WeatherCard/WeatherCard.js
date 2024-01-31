@@ -1,16 +1,12 @@
 import "./WeatherCard.css";
 import { weatherOptions } from "../../utils/constants";
+import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 
 const WeatherCard = ({ day, type, weatherTemp = "" }) => {
-  console.log("weather card");
 
   const imageSource = weatherOptions.filter((i) => {
-    console.log(i);
     return i.day === day && i.type === type;
   });
-
-  console.log(imageSource);
-  console.log(imageSource[0].url);
 
   const imageSourceUrl = imageSource[0].url || "";
 
