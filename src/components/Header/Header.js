@@ -11,7 +11,7 @@ const Header = ({ onCreateModal }) => {
     <header className="header">
       <div className="header__logo">
         <div>
-          <Link>
+          <Link to="/">
             <img src={logo} alt="logo" />
           </Link>
         </div>
