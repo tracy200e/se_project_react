@@ -40,7 +40,6 @@ function App() {
   useEffect(() => {
     getForecastWeather().then((data) => {
       const temperature = parseWeatherData(data);
-      console.log(temperature);
       setTemp(temperature);
     })
     .catch(error => {
