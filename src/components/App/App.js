@@ -33,6 +33,11 @@ function App() {
     setClothingItems([item, ...clothingItems]);
   }
 
+  const handleDeleteItem = () => {
+    setClothingItems(clothingItems => clothingItems.filter((clothingItem, index) => index !== index));
+    handleCloseModal();
+  }
+
   const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
   }
@@ -76,7 +81,7 @@ function App() {
         />
         )}
         {activeModal === "preview" && (
-          <ItemModal selectedCard={selectedCard} onClose={handleCloseModal} />
+          <ItemModal selectedCard={selectedCard} onClose={handleCloseModal} deleteItem={handleDeleteItem}/>
         )}
         </CurrentTemperatureUnitContext.Provider>
       </div>
