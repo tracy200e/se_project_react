@@ -14,31 +14,32 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [temp, setTemp] = useState(0);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+  const [clothingItems, setClothingItems] = useState([]);
 
   const handleCreateModal = () => {
     setActiveModal("create");
-  };
+  }
 
   const handleCloseModal = () => {
     setActiveModal("");
-  };
+  }
 
   const handleSelectedCard = (card) => {
     setActiveModal("preview");
     setSelectedCard(card);
-  };
+  }
 
-  const onAddItem = (values) => {
-    console.log(values);
+  const onAddItem = (item) => {
+    setClothingItems([item, ...clothingItems]);
   }
 
   const handleToggleSwitchChange = () => {
-    if (currentTemperatureUnit === "C") setCurrentTemperatureUnit("F");
-    if (currentTemperatureUnit === "F") setCurrentTemperatureUnit("C");
+    setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
   }
 
   useEffect(() => {
-    getForecastWeather().then((data) => {
+    getForecastWeather()
+    .then((data) => {
       const temperature = parseWeatherData(data);
       setTemp(temperature);
     })
@@ -46,8 +47,6 @@ function App() {
       console.error(`Error: ${error.status}`);
     });
   }, []);
-
-  console.log(currentTemperatureUnit);
 
   return (
     <div>
@@ -57,7 +56,11 @@ function App() {
 
         <Switch>
           <Route exact path="/">
-              <Main weatherTemp={temp} onSelectCard={handleSelectedCard} />
+              <Main 
+              weatherTemp={temp}
+              onSelectCard={handleSelectedCard}
+              clothingItems={clothingItems}
+              />
           </Route>
           <Route path="/profile">
               Profile

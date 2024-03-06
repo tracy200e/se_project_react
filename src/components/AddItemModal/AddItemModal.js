@@ -7,19 +7,24 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
     setName(e.target.value);
   };
 
-  const [link, setUrl] = useState("");
+  const [imageUrl, setUrl] = useState("");
   const handleUrlChange = (e) => {
     setUrl(e.target.value);
   };
 
+  const [weather, setWeather] = useState("");
+  const handleWeatherChange = (e) => {
+    setWeather(e.target.value);
+  }
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAddItem({ name, link });
+    onAddItem({ name, imageUrl, weather });
   };
 
   return (
     <ModalWithForm
       title="New Garment"
+      buttonText="Add garment"
       onClose={handleCloseModal}
       isOpen={isOpen}
       onSubmit={handleSubmit}
@@ -46,11 +51,11 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
             type="url"
             name="link"
             minLength="1"
-            maxLength="30"
-            value={link}
+            maxLength="70"
+            value={imageUrl}
             onChange={handleUrlChange}
             className="form__text-input"
-            placeholder="Image"
+            placeholder="Image URL"
           />
         </label>
       </div>
@@ -58,22 +63,34 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
         <p>Select the weather type:</p>
         <div>
           <div>
-            <label>
-              <input name="weatherType" type="radio" id="hot" value="hot" onChange />
-              Hot
-            </label>
+            <input 
+              name="weatherType" 
+              type="radio" 
+              id="hot" 
+              value="hot"
+              onChange={handleWeatherChange} 
+            />
+            <label>Hot</label>
           </div>
           <div>
-            <label>
-              <input name="weatherType" type="radio" id="warm" value="warm" />
-              Warm
-            </label>
+            <input 
+              name="weatherType" 
+              type="radio" 
+              id="warm" 
+              value="warm"
+              onChange={handleWeatherChange}
+            />
+            <label>Warm</label>
           </div>
           <div>
-            <label>
-              <input name="weatherType" type="radio" id="cold" value="cold" />
-              Cold
-            </label>
+            <input 
+              name="weatherType" 
+              type="radio" 
+              id="cold" 
+              value="cold"
+              onChange={handleWeatherChange}
+            />
+            <label>Cold</label>
           </div>
         </div>
       </div>
