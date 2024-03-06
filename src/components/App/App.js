@@ -29,7 +29,7 @@ function App() {
     setSelectedCard(card);
   }
 
-  const onAddItem = (item) => {
+  const handleAddItemSubmit = (item) => {
     setClothingItems([item, ...clothingItems]);
   }
 
@@ -72,7 +72,7 @@ function App() {
         <AddItemModal 
         handleCloseModal={handleCloseModal} 
         isOpen={activeModal === "create"} 
-        onAddItem={onAddItem}
+        onAddItem={handleAddItemSubmit}
         />
         )}
         {activeModal === "preview" && (

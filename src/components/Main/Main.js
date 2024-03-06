@@ -1,4 +1,3 @@
-// import { defaultClothingItems } from "../../utils/constants";
 import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
 import { useMemo, useContext } from "react";
@@ -24,7 +23,6 @@ function Main({ weatherTemp, onSelectCard, clothingItems }) {
     return clothingItem.weather.toLowerCase() === weatherType;
   });
 
-  console.log(filteredCards);
   return (
     <main className="main">
       <WeatherCard day={false} type="sunny" weatherTemp={temp} currentTemperatureUnit={currentTemperatureUnit} />
