@@ -30,7 +30,7 @@ const Header = ({ onCreateModal }) => {
         </div>
         <Link to="/profile">Name</Link>
         <div>
-          <img src={avatar} alt="logo" />
+          <img src={avatar} alt="profile-pic" />
         </div>
       </div>
     </header>

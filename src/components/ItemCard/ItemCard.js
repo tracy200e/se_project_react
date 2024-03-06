@@ -1,13 +1,13 @@
 import "./ItemCard.css";
 import likeButton from "../../images/like.svg";
 
-const ItemCard = ({ item, onSelectCard }) => {
+const ItemCard = ({ item, onSelectedCard }) => {
   return (
     <div className="card">
       <img
         src={item.link}
         className="card_image"
-        onClick={() => onSelectCard(item)}
+        onClick={() => onSelectedCard(item)}
         alt={item.name}
       />
       <div className="card_title">

@@ -4,7 +4,7 @@ import { useMemo, useContext } from "react";
 import "./Main.css";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 
-function Main({ weatherTemp, onSelectCard, clothingItems }) {
+function Main({ weatherTemp, onSelectedCard, clothingItems }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   const temp = weatherTemp?.temperature?.[currentTemperatureUnit] || 999;
   const weatherType = useMemo(() => {
@@ -29,7 +29,7 @@ function Main({ weatherTemp, onSelectCard, clothingItems }) {
         Today is {temp} °{currentTemperatureUnit} / You may want to wear:
         <div className="card_items">
           {filteredCards.map((item) => (
-            <ItemCard key={item._id} item={item} onSelectCard={onSelectCard} />
+            <ItemCard key={item._id} item={item} onSelectedCard={onSelectedCard} />
           ))}
         </div>
       </section>

@@ -1,0 +1,26 @@
+.clothes__section_header {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.clothes__card_button {
+    border: none;
+    background-color: transparent;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    width: 100%;
+    color: #00000060;
+    cursor: pointer;
+}
+.clothes__card_section {
+    font-family: 'Cabinet Grotesk';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    width: 100%;
+    color: #000000;
+}

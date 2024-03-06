@@ -1,6 +1,7 @@
 import "./App.css";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
+import Profile from "../Profile/Profile";
 import Footer from "../Footer/Footer";
 import { useState, useEffect, context } from "react";
 import ItemModal from "../ItemModal/ItemModal";
@@ -8,6 +9,7 @@ import { getForecastWeather, parseWeatherData } from "../../utils/weatherApi";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 import { Switch, Route } from "react-router-dom";
 import AddItemModal from "../AddItemModal/AddItemModal";
+import api from "../../utils/api";
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
@@ -53,6 +55,13 @@ function App() {
     });
   }, []);
 
+  useEffect(() => {
+    api.getItems()
+    .then((res) => {
+      setClothingItems(res);
+    });
+  });
+
   return (
     <div>
       <div className="app_page">
@@ -68,7 +77,11 @@ function App() {
               />
           </Route>
           <Route path="/profile">
-              Profile
+              <Profile
+              onSelectedCard={handleSelectedCard}
+              onCreateModal={handleCreateModal}
+              clothingItems={clothingItems}
+              />
           </Route>
         </Switch>
 
