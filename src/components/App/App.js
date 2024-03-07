@@ -59,6 +59,9 @@ function App() {
     api.getItems()
     .then((res) => {
       setClothingItems(res);
+    })
+    .catch(error => {
+      console.error(`Error: ${error.status}`);
     });
   });
 

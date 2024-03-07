@@ -2,6 +2,13 @@
     display: flex;
     gap: 20px;
     align-items: center;
+    padding: 7px 20px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    color: #000000;
+    width: 100%;
 }
 
 .clothes__card_button {
@@ -11,11 +18,14 @@
     font-weight: 700;
     font-size: 20px;
     line-height: 24px;
-    width: 100%;
+
     color: #00000060;
     cursor: pointer;
 }
 .clothes__card_section {
+    display: flex;
+    gap: 20px;
+    padding: 20px 20px;
     font-family: 'Cabinet Grotesk';
     font-style: normal;
     font-weight: 700;
