@@ -1,0 +1,12 @@
+.modal__image-container {
+    width: 498px;
+    height: 498px;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+}
+
+.modal__image {
+    max-width: 498px;
+    height: auto;
+}
