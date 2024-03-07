@@ -1,17 +1,18 @@
 import "./ItemCard.css";
 import likeButton from "../../images/like.svg";
 
-const ItemCard = ({ item, onSelectedCard }) => {
+const ItemCard = ({ clothingItem, onSelectedCard }) => {
+  console.log("Item Card", clothingItem.imageUrl)
   return (
     <div className="card">
       <img
-        src={item.link}
+        src={clothingItem.imageUrl}
         className="card_image"
-        onClick={() => onSelectedCard(item)}
-        alt={item.name}
+        onClick={() => onSelectedCard(clothingItem)}
+        alt={clothingItem.name}
       />
       <div className="card_title">
-        <h3 className="card_name">{item.name}</h3>
+        <h3 className="card_name">{clothingItem.name}</h3>
         <img src={likeButton} className="card_like" alt="like button" />
       </div>
     </div>

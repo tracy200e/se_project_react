@@ -14,7 +14,7 @@ const ItemModal = ({ selectedCard, onClose, deleteItem }) => {
           onClick={onClose}
         >
         </button>
-        <img src={selectedCard.link} alt={selectedCard.name} />
+        <img src={selectedCard.imageUrl} alt={selectedCard.name} />
         <h3>{selectedCard.name}</h3>
         <button
           type="button"
