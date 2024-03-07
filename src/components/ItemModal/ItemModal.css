@@ -7,6 +7,23 @@
 }
 
 .modal__image {
-    max-width: 498px;
+    width: 498px;
     height: auto;
+}
+
+.modal__header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal__delete-button {
+    border: none;
+    background-color: transparent;
+    font-family: 'Cabinet Grotesk';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    color: #FF4D00;
+    cursor: pointer;
 }

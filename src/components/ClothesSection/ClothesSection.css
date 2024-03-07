@@ -18,10 +18,10 @@
     font-weight: 700;
     font-size: 20px;
     line-height: 24px;
-
     color: #00000060;
     cursor: pointer;
 }
+
 .clothes__card_section {
     display: flex;
     gap: 20px;
