@@ -42,9 +42,16 @@ function App() {
       });
   };
 
-  const handleDeleteItem = () => {
-    setClothingItems(clothingItems => clothingItems.filter((clothingItem, index) => console.log(clothingItem._id)));
-    console.log(clothingItems);
+  const handleDeleteItem = (_id) => {
+    deleteItems(_id)
+      .then(() => {
+        setClothingItems(clothingItems => clothingItems.filter((clothingItem, index) => clothingItem._id !== index));
+      })
+    getItems()
+      .then((item) => {
+        setClothingItems(item);
+      })
+      .catch((error) => console.error(`Error: ${error.status}`));
     handleCloseModal();
   }
 

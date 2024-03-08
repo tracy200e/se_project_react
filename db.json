@@ -16,18 +16,5 @@
   "profile": {
     "name": "typicode"
   },
-  "items": [
-    {
-      "_id": 1,
-      "name": "Cap",
-      "imageUrl": "https://shorturl.at/oxyKL",
-      "weather": "cold"
-    },
-    {
-      "name": "Sneakers",
-      "imageUrl": "https://shorturl.at/ertBN",
-      "weather": "warm",
-      "_id": 2
-    }
-  ]
+  "items": []
 }
