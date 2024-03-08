@@ -86,7 +86,7 @@ function App() {
           <Route exact path="/">
               <Main 
                 weatherTemp={temp}
-                onSelectCard={handleSelectedCard}
+                onSelectedCard={handleSelectedCard}
                 clothingItems={clothingItems}
               />
           </Route>
