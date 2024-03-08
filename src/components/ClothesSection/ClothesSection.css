@@ -1,4 +1,8 @@
-.clothes__section_header {
+.clothes-section {
+    max-width: 1015px;
+}
+
+.clothes-section__header {
     display: flex;
     gap: 20px;
     align-items: center;
@@ -11,7 +15,7 @@
     width: 100%;
 }
 
-.clothes__card_button {
+.clothes-section__card-button {
     border: none;
     background-color: transparent;
     font-style: normal;
@@ -22,8 +26,9 @@
     cursor: pointer;
 }
 
-.clothes__card_section {
+.clothes-section_cards {
     display: flex;
+    flex-wrap: wrap;
     gap: 20px;
     padding: 20px 20px;
     font-family: 'Cabinet Grotesk';

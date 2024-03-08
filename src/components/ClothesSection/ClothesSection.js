@@ -4,12 +4,12 @@ import "./ClothesSection.css";
 const ClothesSection = ({ onSelectedCard, onCreateModal, clothingItems }) => {
     
     return (
-        <div>
-            <div className="clothes__section_header">
+        <div className="clothes-section">
+            <div className="clothes-section__header">
                 <div>Your items</div>
                 <div>
                     <button
-                        className="clothes__card_button"
+                        className="clothes-section__card-button"
                         type="text"
                         onClick={onCreateModal}
                     >
@@ -17,7 +17,7 @@ const ClothesSection = ({ onSelectedCard, onCreateModal, clothingItems }) => {
                     </button>
                 </div>
             </div>
-            <section className="clothes__card_section">
+            <section className="clothes-section_cards">
                 {clothingItems.map((clothingItem) => (
                 <ItemCard 
                     key={clothingItem._id}
