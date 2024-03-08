@@ -16,5 +16,30 @@
   "profile": {
     "name": "typicode"
   },
-  "items": []
+  "items": [
+    {
+      "name": "Cap",
+      "imageUrl": "https://shorturl.at/fjloT",
+      "weather": "cold",
+      "_id": 1
+    },
+    {
+      "name": "Sneakers",
+      "imageUrl": "https://shorturl.at/dqG27",
+      "weather": "warm",
+      "_id": 2
+    },
+    {
+      "name": "Blazer",
+      "imageUrl": "https://shorturl.at/iyBFP",
+      "weather": "warm",
+      "_id": 3
+    },
+    {
+      "name": "Scarf",
+      "imageUrl": "https://shorturl.at/zNQSZ",
+      "weather": "cold",
+      "_id": 4
+    }
+  ]
 }
