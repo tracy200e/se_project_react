@@ -1,12 +1,13 @@
 const baseUrl = "http://localhost:3001";
 
 // Add item
-const addItems = () => {
+export function addItems(item) {
     return fetch(`${baseUrl}/items`, {
         method: "POST",
         headers: {
             "content-type": "application/json"
-        }
+        },
+        body: JSON.stringify(item),
     })
     .then((res) => {
         return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
@@ -14,7 +15,7 @@ const addItems = () => {
 };
 
 // Get item
-const getItems = () => {
+export function getItems() {
     return fetch(`${baseUrl}/items`, {
         method: "GET",
         headers: {
@@ -27,8 +28,8 @@ const getItems = () => {
 };
 
 // Delete item
-const deleteItems = (id) => {
-    return fetch(`${baseUrl}/items/:${id}`, {
+export function deleteItems(_id) {
+    return fetch(`${baseUrl}/items/${_id}`, {
         method: "DELETE",
         headers: {
             "content-type": "application/json"
@@ -38,7 +39,3 @@ const deleteItems = (id) => {
         return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
     });
 };
-
-const api = { addItems, getItems, deleteItems };
-
-export default api;
