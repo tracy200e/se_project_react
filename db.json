@@ -40,6 +40,12 @@
       "imageUrl": "https://shorturl.at/zNQSZ",
       "weather": "cold",
       "_id": 4
+    },
+    {
+      "name": "Cap",
+      "imageUrl": "https://shorturl.at/gjopW",
+      "weather": "cold",
+      "_id": 5
     }
   ]
 }

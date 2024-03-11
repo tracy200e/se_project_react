@@ -15,7 +15,7 @@ function request(url, options) {
 
 // Add item
 export function addItems(item) {
-    request(`${baseUrl}/items`, {
+    return request(`${baseUrl}/items`, {
         method: "POST",
         headers: {
             "content-type": "application/json"
@@ -26,7 +26,7 @@ export function addItems(item) {
 
 // Get item
 export function getItems() {
-    request(`${baseUrl}/items`, {
+    return request(`${baseUrl}/items`, {
         method: "GET",
         headers: {
             "content-type": "application/json"
@@ -36,7 +36,7 @@ export function getItems() {
 
 // Delete item
 export function deleteItems(_id) {
-    request(`${baseUrl}/items/${_id}`, {
+    return request(`${baseUrl}/items/${_id}`, {
         method: "DELETE",
         headers: {
             "content-type": "application/json"
