@@ -8,36 +8,38 @@ export function processServerResponse(res) {
     return Promise.reject(`Error ${res.status}`);
 }
 
+// Fetch and check responses
+function request(url, options) {
+    return fetch(url, options).then(processServerResponse);
+};
+
 // Add item
 export function addItems(item) {
-    return fetch(`${baseUrl}/items`, {
+    request(`${baseUrl}/items`, {
         method: "POST",
         headers: {
             "content-type": "application/json"
         },
         body: JSON.stringify(item),
     })
-    .then(processServerResponse);
 };
 
 // Get item
 export function getItems() {
-    return fetch(`${baseUrl}/items`, {
+    request(`${baseUrl}/items`, {
         method: "GET",
         headers: {
             "content-type": "application/json"
         }
     })
-    .then(processServerResponse);
 };
 
 // Delete item
 export function deleteItems(_id) {
-    return fetch(`${baseUrl}/items/${_id}`, {
+    request(`${baseUrl}/items/${_id}`, {
         method: "DELETE",
         headers: {
             "content-type": "application/json"
         }
     })
-    .then(processServerResponse);
 };

@@ -47,10 +47,6 @@ function App() {
       .then(() => {
         setClothingItems(clothingItems => clothingItems.filter((clothingItem, index) => clothingItem._id !== index));
       })
-    getItems()
-      .then((item) => {
-        setClothingItems(item);
-      })
       .catch((error) => console.error(`Error: ${error.status}`));
     handleCloseModal();
   }
@@ -77,41 +73,39 @@ function App() {
   }, []);
 
   return (
-    <div>
-      <div className="app_page">
-        <CurrentTemperatureUnitContext.Provider value={{currentTemperatureUnit, handleToggleSwitchChange}}>
-        <Header onCreateModal={handleCreateModal} />
+    <div className="app_page">
+      <CurrentTemperatureUnitContext.Provider value={{currentTemperatureUnit, handleToggleSwitchChange}}>
+      <Header onCreateModal={handleCreateModal} />
 
-        <Switch>
-          <Route exact path="/">
-              <Main 
-                weatherTemp={temp}
-                onSelectedCard={handleSelectedCard}
-                clothingItems={clothingItems}
-              />
-          </Route>
-          <Route path="/profile">
-              <Profile
-                onSelectedCard={handleSelectedCard}
-                onCreateModal={handleCreateModal}
-                clothingItems={clothingItems}
-              />
-          </Route>
-        </Switch>
+      <Switch>
+        <Route exact path="/">
+            <Main 
+              weatherTemp={temp}
+              onSelectedCard={handleSelectedCard}
+              clothingItems={clothingItems}
+            />
+        </Route>
+        <Route path="/profile">
+            <Profile
+              onSelectedCard={handleSelectedCard}
+              onCreateModal={handleCreateModal}
+              clothingItems={clothingItems}
+            />
+        </Route>
+      </Switch>
 
-        <Footer />
-        {activeModal === "create" && (
-        <AddItemModal 
-          handleCloseModal={handleCloseModal} 
-          isOpen={activeModal === "create"}
-          onAddItem={handleAddItemSubmit}
-        />
-        )}
-        {activeModal === "preview" && (
-          <ItemModal selectedCard={selectedCard} onClose={handleCloseModal} deleteItem={handleDeleteItem}/>
-        )}
-        </CurrentTemperatureUnitContext.Provider>
-      </div>
+      <Footer />
+      {activeModal === "create" && (
+      <AddItemModal 
+        handleCloseModal={handleCloseModal} 
+        isOpen={activeModal === "create"}
+        onAddItem={handleAddItemSubmit}
+      />
+      )}
+      {activeModal === "preview" && (
+        <ItemModal selectedCard={selectedCard} onClose={handleCloseModal} deleteItem={handleDeleteItem}/>
+      )}
+      </CurrentTemperatureUnitContext.Provider>
     </div>
   );
 }
