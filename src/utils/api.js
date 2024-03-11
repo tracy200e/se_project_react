@@ -1,5 +1,13 @@
 const baseUrl = "http://localhost:3001";
 
+// Check response and return response status if there's an error
+export function processServerResponse(res) {
+    if (res.ok) {
+        return res.json();
+    }
+    return Promise.reject(`Error ${res.status}`);
+}
+
 // Add item
 export function addItems(item) {
     return fetch(`${baseUrl}/items`, {
@@ -9,9 +17,7 @@ export function addItems(item) {
         },
         body: JSON.stringify(item),
     })
-    .then((res) => {
-        return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-    });
+    .then(processServerResponse);
 };
 
 // Get item
@@ -22,9 +28,7 @@ export function getItems() {
             "content-type": "application/json"
         }
     })
-    .then((res) => {
-        return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-    });
+    .then(processServerResponse);
 };
 
 // Delete item
@@ -35,7 +39,5 @@ export function deleteItems(_id) {
             "content-type": "application/json"
         }
     })
-    .then((res) => {
-        return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-    });
+    .then(processServerResponse);
 };
