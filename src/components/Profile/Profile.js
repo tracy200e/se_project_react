@@ -5,17 +5,16 @@ import "./Profile.css";
 import api from "../../utils/api";
 
 function Profile({ onSelectedCard, onCreateModal, clothingItems }) {
-
-    return (
-        <div className="profile">
-            <SideBar />
-            <ClothesSection
-            onSelectedCard={onSelectedCard}
-            clothingItems={clothingItems}
-            onCreateModal={onCreateModal}
-            />
-        </div>
-    )
+  return (
+    <div className="profile">
+      <SideBar />
+      <ClothesSection
+        onSelectedCard={onSelectedCard}
+        clothingItems={clothingItems}
+        onCreateModal={onCreateModal}
+      />
+    </div>
+  );
 }
 
 export default Profile;

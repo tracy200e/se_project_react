@@ -8,7 +8,9 @@ function Main({ weatherTemp, onSelectedCard, clothingItems }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   const temp = weatherTemp?.temperature?.[currentTemperatureUnit] || 999;
   const weatherType = useMemo(() => {
-    if (temp === undefined) { return 'OW!'}
+    if (temp === undefined) {
+      return "OW!";
+    }
     if (currentTemperatureUnit === "F") {
       if (temp >= 86) {
         return "hot";
@@ -18,14 +20,14 @@ function Main({ weatherTemp, onSelectedCard, clothingItems }) {
         return "cold";
       }
     } else if (currentTemperatureUnit === "C") {
-        if (temp >= 30) {
-          return "hot";
-        } else if (temp >= 19 && temp <= 29) {
-          return "warm";
-        } else if (temp <= 18) {
-          return "cold";
-        }
+      if (temp >= 30) {
+        return "hot";
+      } else if (temp >= 19 && temp <= 29) {
+        return "warm";
+      } else if (temp <= 18) {
+        return "cold";
       }
+    }
   }, [temp, currentTemperatureUnit]);
 
   const filteredCards = clothingItems.filter((clothingItem) => {
@@ -34,14 +36,19 @@ function Main({ weatherTemp, onSelectedCard, clothingItems }) {
 
   return (
     <main className="main">
-      <WeatherCard day={false} type="sunny" weatherTemp={temp} currentTemperatureUnit={currentTemperatureUnit} />
+      <WeatherCard
+        day={false}
+        type="sunny"
+        weatherTemp={temp}
+        currentTemperatureUnit={currentTemperatureUnit}
+      />
       <section className="card_section" id="card-section">
         Today is {temp} °{currentTemperatureUnit} / You may want to wear:
         <div className="card_items">
           {filteredCards.map((clothingItem) => (
-            <ItemCard 
-              key={clothingItem._id} 
-              clothingItem={clothingItem} 
+            <ItemCard
+              key={clothingItem._id}
+              clothingItem={clothingItem}
               onSelectedCard={onSelectedCard}
             />
           ))}

@@ -15,8 +15,8 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
   const [weather, setWeather] = useState("");
   const handleWeatherChange = (e) => {
     setWeather(e.target.value);
-  }
-  
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     onAddItem({ name, imageUrl, weather });
@@ -64,25 +64,24 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
         <p>Select the weather type:</p>
         <div>
           <div>
-            
             <label>
               Hot
-              <input 
-                name="weatherType" 
-                type="radio" 
-                id="hot" 
+              <input
+                name="weatherType"
+                type="radio"
+                id="hot"
                 value="hot"
-                onChange={handleWeatherChange} 
+                onChange={handleWeatherChange}
               />
             </label>
           </div>
           <div>
             <label>
               Warm
-              <input 
-                name="weatherType" 
-                type="radio" 
-                id="warm" 
+              <input
+                name="weatherType"
+                type="radio"
+                id="warm"
                 value="warm"
                 onChange={handleWeatherChange}
               />
@@ -91,10 +90,10 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
           <div>
             <label>
               Cold
-              <input 
-                name="weatherType" 
-                type="radio" 
-                id="cold" 
+              <input
+                name="weatherType"
+                type="radio"
+                id="cold"
                 value="cold"
                 onChange={handleWeatherChange}
               />

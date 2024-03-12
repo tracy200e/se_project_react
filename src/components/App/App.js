@@ -21,11 +21,11 @@ function App() {
 
   const handleCreateModal = () => {
     setActiveModal("create");
-  }
+  };
 
   const handleCloseModal = () => {
     setActiveModal("");
-  }
+  };
 
   useEffect(() => {
     if (!activeModal) return;
@@ -46,7 +46,7 @@ function App() {
   const handleSelectedCard = (card) => {
     setActiveModal("preview");
     setSelectedCard(card);
-  }
+  };
 
   const handleAddItemSubmit = (item) => {
     setIsLoading(true);
@@ -66,68 +66,75 @@ function App() {
   const handleDeleteItem = (_id) => {
     deleteItems(_id)
       .then(() => {
-        setClothingItems(clothingItems => clothingItems.filter((clothingItem) => clothingItem._id !== _id));
-        handleCloseModal()
+        setClothingItems((clothingItems) =>
+          clothingItems.filter((clothingItem) => clothingItem._id !== _id)
+        );
+        handleCloseModal();
       })
-      .then()
-      .catch((error) => console.error(`Error: ${error.status}`))
-  }
+      .catch((error) => console.error(`Error: ${error.status}`));
+  };
 
   const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
-  }
+  };
 
   useEffect(() => {
     getForecastWeather()
-    .then((data) => {
-      const temperature = parseWeatherData(data);
-      setTemp(temperature);
-    })
-    .catch((error) => console.error(`Error: ${error.status}`));
+      .then((data) => {
+        const temperature = parseWeatherData(data);
+        setTemp(temperature);
+      })
+      .catch((error) => console.error(`Error: ${error.status}`));
   }, []);
 
   useEffect(() => {
     getItems()
-    .then((item) => {
-      setClothingItems(item);
-    })
-    .catch((error) => console.error(`Error: ${error.status}`));
+      .then((item) => {
+        setClothingItems(item);
+      })
+      .catch((error) => console.error(`Error: ${error.status}`));
   }, []);
 
   return (
     <div className="app_page">
-      <CurrentTemperatureUnitContext.Provider value={{currentTemperatureUnit, handleToggleSwitchChange}}>
-      <Header onCreateModal={handleCreateModal} />
+      <CurrentTemperatureUnitContext.Provider
+        value={{ currentTemperatureUnit, handleToggleSwitchChange }}
+      >
+        <Header onCreateModal={handleCreateModal} />
 
-      <Switch>
-        <Route exact path="/">
-            <Main 
+        <Switch>
+          <Route exact path="/">
+            <Main
               weatherTemp={temp}
               onSelectedCard={handleSelectedCard}
               clothingItems={clothingItems}
             />
-        </Route>
-        <Route path="/profile">
+          </Route>
+          <Route path="/profile">
             <Profile
               onSelectedCard={handleSelectedCard}
               onCreateModal={handleCreateModal}
               clothingItems={clothingItems}
             />
-        </Route>
-      </Switch>
+          </Route>
+        </Switch>
 
-      <Footer />
-      {activeModal === "create" && (
-      <AddItemModal 
-        handleCloseModal={handleCloseModal} 
-        isOpen={activeModal === "create"}
-        onAddItem={handleAddItemSubmit}
-        buttonText={isLoading ? "Adding Garment..." : "Saved"}
-      />
-      )}
-      {activeModal === "preview" && (
-        <ItemModal selectedCard={selectedCard} onClose={handleCloseModal} deleteItem={handleDeleteItem}/>
-      )}
+        <Footer />
+        {activeModal === "create" && (
+          <AddItemModal
+            handleCloseModal={handleCloseModal}
+            isOpen={activeModal === "create"}
+            onAddItem={handleAddItemSubmit}
+            buttonText={isLoading ? "Adding Garment..." : "Saved"}
+          />
+        )}
+        {activeModal === "preview" && (
+          <ItemModal
+            selectedCard={selectedCard}
+            onClose={handleCloseModal}
+            deleteItem={handleDeleteItem}
+          />
+        )}
       </CurrentTemperatureUnitContext.Provider>
     </div>
   );

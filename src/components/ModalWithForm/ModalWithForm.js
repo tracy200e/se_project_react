@@ -1,5 +1,5 @@
 import "./ModalWithForm.css";
-import { Modal } from "../Modal/Modal"
+import { Modal } from "../Modal/Modal";
 
 const ModalWithForm = ({
   children,
@@ -8,7 +8,7 @@ const ModalWithForm = ({
   onClose,
   name,
   isOpen,
-  onSubmit
+  onSubmit,
 }) => {
   return (
     <div>
@@ -16,7 +16,9 @@ const ModalWithForm = ({
         <div className="modal__title">{title}</div>
         <form onSubmit={onSubmit}>
           {children}
-        <button type="submit" className="modal__submit-button">{buttonText}</button>
+          <button type="submit" className="modal__submit-button">
+            {buttonText}
+          </button>
         </form>
       </Modal>
     </div>
