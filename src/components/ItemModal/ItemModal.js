@@ -1,4 +1,5 @@
 import "./ItemModal.css";
+import { Modal } from "../Modal/Modal";
 
 const ItemModal = ({ selectedCard, onClose, deleteItem }) => {
   const handleDeleteItem = () => {
@@ -6,33 +7,27 @@ const ItemModal = ({ selectedCard, onClose, deleteItem }) => {
   }
 
   return (
-    <div className="modal">
-      <div className="modal__content">
-        <button
-          type="button"
-          className="modal__close-button"
-          onClick={onClose}
-        >
-        </button>
+    <div>
+      <Modal onClose={onClose}>
         <div className="modal__image-container">
-          <img
-            className="modal__image"
-            src={selectedCard.imageUrl}
-            alt={selectedCard.name}
-          />
-        </div>
-        <div className="modal__header">
-          <h3>{selectedCard.name}</h3>
-          <button
-            className="modal__delete-button"
-            type="button"
-            onClick={handleDeleteItem}
-          >
-            Delete item
-          </button>
-        </div>
-        <div>Weather type: {selectedCard.weather}</div>
-      </div>
+            <img
+              className="modal__image"
+              src={selectedCard.imageUrl}
+              alt={selectedCard.name}
+            />
+          </div>
+          <div className="modal__header">
+            <h3>{selectedCard.name}</h3>
+            <button
+              className="modal__delete-button"
+              type="button"
+              onClick={handleDeleteItem}
+            >
+              Delete item
+            </button>
+          </div>
+          <div>Weather type: {selectedCard.weather}</div>
+      </Modal>
     </div>
   );
 };
