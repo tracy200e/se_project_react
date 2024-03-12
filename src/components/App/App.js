@@ -17,6 +17,7 @@ function App() {
   const [temp, setTemp] = useState(0);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -48,6 +49,7 @@ function App() {
   }
 
   const handleAddItemSubmit = (item) => {
+    setIsLoading(true);
     addItems(item)
       .then((newItem) => {
         setClothingItems([newItem, ...clothingItems]);
@@ -55,6 +57,9 @@ function App() {
       })
       .catch((error) => {
         console.error(`Unable to add clothing item due to: ${error.status}`);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   };
 
@@ -116,6 +121,7 @@ function App() {
         handleCloseModal={handleCloseModal} 
         isOpen={activeModal === "create"}
         onAddItem={handleAddItemSubmit}
+        buttonText={isLoading ? "Adding Garment..." : "Saved"}
       />
       )}
       {activeModal === "preview" && (
