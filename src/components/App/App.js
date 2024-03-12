@@ -3,7 +3,7 @@ import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Profile from "../Profile/Profile";
 import Footer from "../Footer/Footer";
-import { useState, useEffect, context } from "react";
+import { useState, useEffect } from "react";
 import ItemModal from "../ItemModal/ItemModal";
 import { getForecastWeather, parseWeatherData } from "../../utils/weatherApi";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
@@ -66,10 +66,11 @@ function App() {
   const handleDeleteItem = (_id) => {
     deleteItems(_id)
       .then(() => {
-        setClothingItems(clothingItems => clothingItems.filter((clothingItem, index) => clothingItem._id !== index));
+        setClothingItems(clothingItems => clothingItems.filter((clothingItem) => clothingItem._id !== _id));
+        handleCloseModal()
       })
-      .catch((error) => console.error(`Error: ${error.status}`));
-    handleCloseModal();
+      .then()
+      .catch((error) => console.error(`Error: ${error.status}`))
   }
 
   const handleToggleSwitchChange = () => {
