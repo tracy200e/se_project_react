@@ -4,12 +4,10 @@ import logo from "../../images/logo.svg";
 import avatar from "../../images/avatar.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { useState, useEffect } from "react";
-import { getForecastWeather } from "../../utils/weatherApi";
 
-const Header = ({ onCreateModal }) => {
+const Header = ({ onCreateModal, city }) => {
   const [currentDate, setCurrentDate] = useState("");
-  const [currentCity, setCurrentCity] = useState("");
-
+  
   useEffect(() => {
     const getCurrentDate = () => {
       const date = new Date();
@@ -21,16 +19,7 @@ const Header = ({ onCreateModal }) => {
       return date.toLocaleDateString(undefined, options);
     };
 
-    navigator.geolocation.getCurrentPosition((position) => {
-      getForecastWeather()
-        .then((data) => {
-          setCurrentCity(data.name);
-        })
-        .catch((error) => console.error(`Error fetching city: ${error.status}`));
-    });
-
     setCurrentDate(getCurrentDate());
-    setCurrentCity();
   }, []);
 
   return (
@@ -42,7 +31,7 @@ const Header = ({ onCreateModal }) => {
           </Link>
         </div>
         <div>
-          {currentDate}, {currentCity}
+          {currentDate}, {city}
         </div>
       </div>
       <div className="header__avatar-logo">

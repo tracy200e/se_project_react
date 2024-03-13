@@ -18,6 +18,7 @@ function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [currentCity, setCurrentCity] = useState("");
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -67,6 +68,7 @@ function App() {
       .then((data) => {
         const temperature = parseWeatherData(data);
         setTemp(temperature);
+        setCurrentCity(data.name);
       })
       .catch((error) => console.error(`Error: ${error.status}`));
   }, []);
@@ -84,7 +86,7 @@ function App() {
       <CurrentTemperatureUnitContext.Provider
         value={{ currentTemperatureUnit, handleToggleSwitchChange }}
       >
-        <Header onCreateModal={handleCreateModal} />
+        <Header onCreateModal={handleCreateModal} city={currentCity} />
 
         <Switch>
           <Route exact path="/">
