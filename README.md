@@ -8,6 +8,9 @@ This app suggests users what to wear based on their local weather forcast of the
 
 This app is built using React, a JavaScript library.
 
+## How does it look?
+![Main Page Design](/public/images/main-page-design.png)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
