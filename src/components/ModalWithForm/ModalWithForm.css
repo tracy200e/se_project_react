@@ -42,4 +42,17 @@
     font-style: normal;
     font-weight: 700;
     font-size: 16px;
+    cursor: pointer;
+}
+
+.modal__redirect-link {
+    padding: 8px 16px;
+    margin-top: 32px;
+    margin-bottom: 0px;
+    cursor: pointer;
+}
+
+.modal__submit-section {
+    display: flex;
+    align-items: center;
 }
