@@ -5,7 +5,7 @@ import avatar from "../../images/avatar.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { useState, useEffect } from "react";
 
-const Header = ({ onCreateModal, city }) => {
+const Header = ({ onCreateModal, registerModal, loginModal, city }) => {
   const [currentDate, setCurrentDate] = useState("");
   
   useEffect(() => {
@@ -36,6 +36,24 @@ const Header = ({ onCreateModal, city }) => {
       </div>
       <div className="header__avatar-logo">
         <ToggleSwitch />
+        <div>
+          <button
+            className="header__button"
+            type="text"
+            onClick={registerModal}
+          >
+            Sign Up
+          </button>
+        </div>
+        <div>
+          <button
+            className="header__button"
+            type="text"
+            onClick={loginModal}
+          >
+            Log In
+          </button>
+        </div>
         <div>
           <button
             className="header__button"

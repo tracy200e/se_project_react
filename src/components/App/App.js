@@ -10,6 +10,8 @@ import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperature
 import { Switch, Route } from "react-router-dom";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import { addItems, getItems, deleteItems } from "../../utils/api";
+import RegisterModal from "../RegisterModal/RegisterModal";
+import LoginModal from "../LoginModal/LoginModal";
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
@@ -19,6 +21,20 @@ function App() {
   const [clothingItems, setClothingItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [currentCity, setCurrentCity] = useState("");
+
+  const handleRegisterModal = () => {
+    setActiveModal("register");
+  };
+
+  const handleLoginModal = () => {
+    setActiveModal("login");
+  }
+
+  const handleSwitch = () => {
+    activeModal === "login"
+    ? setActiveModal("register")
+    : setActiveModal("login");
+  }
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -86,8 +102,12 @@ function App() {
       <CurrentTemperatureUnitContext.Provider
         value={{ currentTemperatureUnit, handleToggleSwitchChange }}
       >
-        <Header onCreateModal={handleCreateModal} city={currentCity} />
-
+        <Header 
+          onCreateModal={handleCreateModal}
+          registerModal={handleRegisterModal}
+          loginModal={handleLoginModal}
+          city={currentCity}
+        />
         <Switch>
           <Route exact path="/">
             <Main
@@ -106,6 +126,20 @@ function App() {
         </Switch>
 
         <Footer />
+        {activeModal === "register" && (
+          <RegisterModal
+            handleCloseModal={handleCloseModal}
+            isOpen={activeModal === "register"}
+            switchToLogin={handleSwitch}
+          />
+        )}
+        {activeModal === "login" && (
+          <LoginModal
+            handleCloseModal={handleCloseModal}
+            isOpen={activeModal === "login"}
+            switchToRegister={handleSwitch}
+          />
+        )}
         {activeModal === "create" && (
           <AddItemModal
             handleCloseModal={handleCloseModal}
