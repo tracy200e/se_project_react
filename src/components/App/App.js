@@ -22,27 +22,19 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [currentCity, setCurrentCity] = useState("");
 
-  const handleRegisterModal = () => {
-    setActiveModal("register");
-  };
-
-  const handleLoginModal = () => {
-    setActiveModal("login");
+  const handleOpenModal = (modalType) => {
+    setActiveModal(modalType)
   }
+
+  const handleCloseModal = () => {
+    setActiveModal("");
+  };
 
   const handleSwitch = () => {
     activeModal === "login"
     ? setActiveModal("register")
     : setActiveModal("login");
   }
-
-  const handleCreateModal = () => {
-    setActiveModal("create");
-  };
-
-  const handleCloseModal = () => {
-    setActiveModal("");
-  };
 
   const handleSelectedCard = (card) => {
     setActiveModal("preview");
@@ -87,13 +79,11 @@ function App() {
         setCurrentCity(data.name);
       })
       .catch((error) => console.error(`Error: ${error.status}`));
-  }, []);
 
-  useEffect(() => {
     getItems()
       .then((item) => {
         setClothingItems(item);
-      })
+      })  
       .catch((error) => console.error(`Error: ${error.status}`));
   }, []);
 
@@ -103,29 +93,29 @@ function App() {
         value={{ currentTemperatureUnit, handleToggleSwitchChange }}
       >
         <Header 
-          onCreateModal={handleCreateModal}
-          registerModal={handleRegisterModal}
-          loginModal={handleLoginModal}
+          onCreateModal={() => handleOpenModal("create")}
+          registerModal={() => handleOpenModal("register")}
+          loginModal={() => handleOpenModal("login")}
           city={currentCity}
         />
         <Switch>
           <Route exact path="/">
             <Main
               weatherTemp={temp}
-              onSelectedCard={handleSelectedCard}
+              onSelectedCard={(handleSelectedCard)}
               clothingItems={clothingItems}
             />
           </Route>
           <Route path="/profile">
             <Profile
               onSelectedCard={handleSelectedCard}
-              onCreateModal={handleCreateModal}
+              onCreateModal={() => handleOpenModal("create")}
               clothingItems={clothingItems}
             />
           </Route>
         </Switch>
-
         <Footer />
+
         {activeModal === "register" && (
           <RegisterModal
             handleCloseModal={handleCloseModal}
