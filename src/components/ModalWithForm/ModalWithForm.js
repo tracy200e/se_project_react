@@ -4,7 +4,7 @@ import { Modal } from "../Modal/Modal";
 const ModalWithForm = ({
   children,
   buttonText,
-  switchToModal,
+  linkHref,
   linkText,
   title,
   onClose,
@@ -21,7 +21,9 @@ const ModalWithForm = ({
           <button type="submit" className="modal__submit-button">
             {buttonText}
           </button>
-          <p className="modal__redirect-link" onClick={switchToModal}>{linkText}</p>
+          <a className="modal__redirect-link" href={linkHref}>
+            {linkText}
+          </a>
         </div>
       </form>
     </Modal>
