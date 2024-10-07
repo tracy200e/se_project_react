@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-const LoginModal = ({
-  handleCloseModal,
-  handleLogin,
-  switchToRegister,
-  isOpen,
-}) => {
+const LoginModal = ({ handleCloseModal, handleLogin, isOpen = true }) => {
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
@@ -29,7 +24,7 @@ const LoginModal = ({
       title="Log In"
       buttonText="LogIn"
       linkText="or Sign Up"
-      switchToModal={switchToRegister}
+      linkHref="/register"
       onClose={handleCloseModal}
       isOpen={isOpen}
       onSubmit={handleSubmit}

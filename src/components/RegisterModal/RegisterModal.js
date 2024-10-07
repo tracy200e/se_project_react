@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-const RegisterModal = ({ handleCloseModal, handleRegistration, switchToLogin, isOpen }) => {
+const RegisterModal = ({
+  handleCloseModal,
+  handleRegistration,
+  isOpen = true,
+}) => {
   const [registerData, setRegisterData] = useState({
     email: "",
     password: "",
     name: "",
     avatar: "",
   });
-  
+
   // Change function
   const handleChange = (evt) => {
     const { name, value } = evt.target;
@@ -26,11 +30,10 @@ const RegisterModal = ({ handleCloseModal, handleRegistration, switchToLogin, is
       title="Sign Up"
       buttonText="Sign Up"
       linkText="or Log In"
-      switchToModal={switchToLogin}
+      linkHref="/login"
       onClose={handleCloseModal}
       isOpen={isOpen}
       onSubmit={handleSubmit}
-
     >
       <div className="form__input">
         <label>
