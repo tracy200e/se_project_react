@@ -24,19 +24,19 @@ function App() {
   const [currentCity, setCurrentCity] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  const handleLogin = (evt) => {
+    evt.preventDefault();
+    setIsLoggedIn({
+      isLoggedIn: true,
+    });
+  };
+
   const handleOpenModal = (modalType) => {
     setActiveModal(modalType);
   };
 
   const handleCloseModal = () => {
     setActiveModal("");
-  };
-
-  const handleSwitch = () => {
-    activeModal === "login"
-      ? setActiveModal("register")
-      : setActiveModal("login");
-    console.log(activeModal);
   };
 
   const handleSelectedCard = (card) => {
@@ -106,7 +106,10 @@ function App() {
             <RegisterModal handleCloseModal={handleCloseModal} />
           </Route>
           <Route path="/login">
-            <LoginModal handleCloseModal={handleCloseModal} />
+            <LoginModal
+              handleCloseModal={handleCloseModal}
+              handleLogin={handleLogin}
+            />
           </Route>
           <ProtectedRoute isLoggedIn={isLoggedIn} path="/profile">
             <Profile

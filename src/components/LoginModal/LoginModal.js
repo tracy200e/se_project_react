@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import { withRouter, useHistory } from "react-router-dom";
+import * as auth from "../../utils/auth";
 
-const LoginModal = ({ handleCloseModal, handleLogin, isOpen = true }) => {
+const LoginModal = ({ handleCloseModal, isOpen = true, handleLogin }) => {
+  const history = useHistory();
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
@@ -16,7 +19,23 @@ const LoginModal = ({ handleCloseModal, handleLogin, isOpen = true }) => {
   // Submit function
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    handleLogin(loginData);
+    if (!loginData.email || !loginData.password) {
+      return;
+    }
+    auth.authorize(loginData.email, loginData.password).then((data) => {
+      if (data.jwt) {
+        setLoginData(
+          {
+            email: "",
+            password: "",
+          },
+          () => {
+            handleLogin();
+            history.pushState("/");
+          }
+        ).catch((error) => console.log(error));
+      }
+    });
   };
 
   return (
@@ -60,4 +79,4 @@ const LoginModal = ({ handleCloseModal, handleLogin, isOpen = true }) => {
   );
 };
 
-export default LoginModal;
+export default withRouter(LoginModal);
