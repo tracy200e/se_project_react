@@ -82,7 +82,7 @@ const RegisterModal = ({
           Avatar URL*
           <input
             type="url"
-            name="link"
+            name="avatar"
             minLength="1"
             maxLength="70"
             value={registerData.avatar}
