@@ -9,7 +9,7 @@ const ModalWithForm = ({
   title,
   onClose,
   name,
-  isOpen,
+  isOpen = true,
   onSubmit,
 }) => {
   return (

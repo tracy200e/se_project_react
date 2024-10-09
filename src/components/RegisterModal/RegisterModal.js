@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import { useHistory } from "react-router-dom";
 
-const RegisterModal = ({
-  handleCloseModal,
-  handleRegistration,
-  isOpen = true,
-}) => {
+import * as auth from "../../utils/auth";
+
+const RegisterModal = ({ handleCloseModal, isOpen = true }) => {
+  const history = useHistory();
+
   const [registerData, setRegisterData] = useState({
     email: "",
     password: "",
@@ -22,7 +23,12 @@ const RegisterModal = ({
   // Submit function
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    handleRegistration(registerData);
+    auth
+      .register(registerData)
+      .then((res) => {
+        history.push("/login");
+      })
+      .catch((error) => console.log(error));
   };
 
   return (
