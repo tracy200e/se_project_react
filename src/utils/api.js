@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:3001";
+export const baseUrl = "http://localhost:3001";
 
 // Check response and return response status if there's an error
 export function processServerResponse(res) {
@@ -9,7 +9,7 @@ export function processServerResponse(res) {
 }
 
 // Fetch and check responses
-function request(url, options) {
+export function request(url, options) {
   return fetch(url, options).then(processServerResponse);
 }
 
