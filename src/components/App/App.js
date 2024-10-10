@@ -13,6 +13,8 @@ import { addItems, getItems, deleteItems } from "../../utils/api";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import * as auth from "../../utils/auth";
+import { useHistory } from "react-router-dom";
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
@@ -23,12 +25,39 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [currentCity, setCurrentCity] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [currentUser, setCurrentUser] = useState({
+    email: "",
+    name: "",
+    avatar: "",
+    _id: "",
+  });
+  const history = useHistory();
 
-  const handleLogin = (evt) => {
-    evt.preventDefault();
-    setIsLoggedIn({
-      isLoggedIn: true,
-    });
+  const handleRegistration = ({ email, password, name, avatar }) => {
+    return auth
+      .signUp({ email, password, name, avatar })
+      .then(() => {
+        handleLogin({ email, password });
+      })
+      .catch(console.error);
+  };
+
+  const handleLogin = ({ email, password }) => {
+    if (!email || !password) {
+      return;
+    }
+
+    return auth
+      .signIn({ email, password })
+      .then((data) => {
+        console.log(data);
+        localStorage.setItem("jwt", data.token);
+        setCurrentUser(data);
+        setIsLoggedIn(true);
+        history.push("/profile");
+        handleCloseModal();
+      })
+      .catch(console.error);
   };
 
   const handleOpenModal = (modalType) => {
@@ -102,10 +131,13 @@ function App() {
           city={currentCity}
         />
         <Switch>
-          <Route path="/register">
-            <RegisterModal handleCloseModal={handleCloseModal} />
+          <Route path="/signup">
+            <RegisterModal
+              handleRegistration={handleRegistration}
+              handleCloseModal={handleCloseModal}
+            />
           </Route>
-          <Route path="/login">
+          <Route path="/signin">
             <LoginModal
               handleCloseModal={handleCloseModal}
               handleLogin={handleLogin}
@@ -119,7 +151,11 @@ function App() {
             />
           </ProtectedRoute>
           <Route path="/">
-            {isLoggedIn ? <Redirect to="/profile" /> : <Redirect to="/login" />}
+            {isLoggedIn ? (
+              <Redirect to="/profile" />
+            ) : (
+              <Redirect to="/signin" />
+            )}
             <Main
               weatherTemp={temp}
               onSelectedCard={handleSelectedCard}

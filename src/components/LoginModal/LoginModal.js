@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import { withRouter, useHistory } from "react-router-dom";
-import * as auth from "../../utils/auth";
 
 const LoginModal = ({ handleCloseModal, isOpen = true, handleLogin }) => {
-  const history = useHistory();
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
@@ -22,20 +19,7 @@ const LoginModal = ({ handleCloseModal, isOpen = true, handleLogin }) => {
     if (!loginData.email || !loginData.password) {
       return;
     }
-    auth.authorize(loginData.email, loginData.password).then((data) => {
-      if (data.jwt) {
-        setLoginData(
-          {
-            email: "",
-            password: "",
-          },
-          () => {
-            handleLogin();
-            history.pushState("/");
-          }
-        ).catch((error) => console.log(error));
-      }
-    });
+    handleLogin(loginData);
   };
 
   return (
@@ -43,7 +27,7 @@ const LoginModal = ({ handleCloseModal, isOpen = true, handleLogin }) => {
       title="Log In"
       buttonText="LogIn"
       linkText="or Sign Up"
-      linkHref="/register"
+      linkHref="/signup"
       onClose={handleCloseModal}
       isOpen={isOpen}
       onSubmit={handleSubmit}
@@ -79,4 +63,4 @@ const LoginModal = ({ handleCloseModal, isOpen = true, handleLogin }) => {
   );
 };
 
-export default withRouter(LoginModal);
+export default LoginModal;
