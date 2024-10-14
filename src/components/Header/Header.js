@@ -1,13 +1,21 @@
 import "./Header.css";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import logo from "../../images/logo.svg";
 import avatar from "../../images/avatar.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
-import { useState, useEffect } from "react";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { useState, useEffect, useContext } from "react";
 
-const Header = ({ onCreateModal, registerModal, loginModal, city }) => {
+const Header = ({ onCreateModal, openRegisterModal, openLoginModal, city }) => {
+  const userData = useContext(CurrentUserContext);
   const [currentDate, setCurrentDate] = useState("");
-  
+  const history = useHistory();
+
+  const handleLogOut = () => {
+    localStorage.removeItem("jwt");
+    history.push("/signin");
+  };
+
   useEffect(() => {
     const getCurrentDate = () => {
       const date = new Date();
@@ -40,7 +48,7 @@ const Header = ({ onCreateModal, registerModal, loginModal, city }) => {
           <button
             className="header__button"
             type="text"
-            onClick={registerModal}
+            onClick={openRegisterModal}
           >
             Sign Up
           </button>
@@ -49,9 +57,14 @@ const Header = ({ onCreateModal, registerModal, loginModal, city }) => {
           <button
             className="header__button"
             type="text"
-            onClick={loginModal}
+            onClick={openLoginModal}
           >
             Log In
+          </button>
+        </div>
+        <div>
+          <button className="header__button" type="text" onClick={handleLogOut}>
+            Log Out
           </button>
         </div>
         <div>
@@ -63,7 +76,7 @@ const Header = ({ onCreateModal, registerModal, loginModal, city }) => {
             + Add Clothes
           </button>
         </div>
-        <Link to="/profile">Name</Link>
+        <Link to="/profile">{userData.name}</Link>
         <div>
           <img src={avatar} alt="profile-pic" />
         </div>
