@@ -19,6 +19,7 @@ export function addItems(item) {
     method: "POST",
     headers: {
       "content-type": "application/json",
+      authorization: `Bearer ${localStorage.getItem("jwt")}`,
     },
     body: JSON.stringify(item),
   });
@@ -40,6 +41,7 @@ export function deleteItems(_id) {
     method: "DELETE",
     headers: {
       "content-type": "application/json",
+      authorization: `Bearer ${localStorage.getItem("jwt")}`,
     },
   });
 }
