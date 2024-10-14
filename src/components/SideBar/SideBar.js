@@ -6,7 +6,6 @@ const SideBar = () => {
     <div>
       <div className="side-bar">
         <img src={avatar} alt="profile-pic" />
-        <div>Tracy Chen</div>
       </div>
     </div>
   );
