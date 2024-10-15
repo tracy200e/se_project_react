@@ -72,12 +72,14 @@ function App() {
     }
   };
 
-  const handleOpenModal = (modalType) => {
+  const handleOpenModal = (modalType, path) => {
     setActiveModal(modalType);
+    history.push(path);
   };
 
   const handleCloseModal = () => {
     setActiveModal("");
+    history.push("/");
   };
 
   const handleSelectedCard = (card) => {
@@ -141,8 +143,8 @@ function App() {
         >
           <Header
             onCreateModal={() => handleOpenModal("create")}
-            openRegisterModal={() => handleOpenModal("register")}
-            openLoginModal={() => handleOpenModal("login")}
+            openRegisterModal={() => handleOpenModal("register", "signup")}
+            openLoginModal={() => handleOpenModal("login", "/signin")}
             city={currentCity}
             isLoggedIn={isLoggedIn}
             currentUser={currentUser}
@@ -170,7 +172,7 @@ function App() {
                 onSelectedCard={handleSelectedCard}
                 onCreateModal={() => handleOpenModal("create")}
                 clothingItems={clothingItems}
-                userData={currentUser}
+                currentUser={currentUser}
               />
             </ProtectedRoute>
             <Route path="/" exact={true}></Route>
@@ -190,6 +192,7 @@ function App() {
               selectedCard={selectedCard}
               onClose={handleCloseModal}
               deleteItem={handleDeleteItem}
+              currentUser={currentUser}
             />
           )}
         </CurrentTemperatureUnitContext.Provider>
