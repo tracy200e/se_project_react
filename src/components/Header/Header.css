@@ -11,7 +11,7 @@
     color: #000000;
 }
   
-.header__logo {
+.header__logo, .header__navigation {
     display: flex;
     gap: 20px;
     align-items: center;
@@ -21,6 +21,9 @@
     display: flex;
     gap: 20px;
     align-items: center;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
 }
 
 .header__button {
@@ -30,7 +33,7 @@
     font-weight: 700;
     font-size: 20px;
     line-height: 24px;
-    width: 100%;
+    width: auto;
     color: #000000;
     cursor: pointer;
 }
