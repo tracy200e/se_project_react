@@ -6,7 +6,13 @@ import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { useState, useEffect, useContext } from "react";
 
-const Header = ({ onCreateModal, openRegisterModal, openLoginModal, city }) => {
+const Header = ({
+  onCreateModal,
+  openRegisterModal,
+  openLoginModal,
+  city,
+  isLoggedIn,
+}) => {
   const userData = useContext(CurrentUserContext);
   const [currentDate, setCurrentDate] = useState("");
   const history = useHistory();
@@ -42,44 +48,55 @@ const Header = ({ onCreateModal, openRegisterModal, openLoginModal, city }) => {
           {currentDate}, {city}
         </div>
       </div>
-      <div className="header__avatar-logo">
+      <div>
         <ToggleSwitch />
-        <div>
-          <button
-            className="header__button"
-            type="text"
-            onClick={openRegisterModal}
-          >
-            Sign Up
-          </button>
-        </div>
-        <div>
-          <button
-            className="header__button"
-            type="text"
-            onClick={openLoginModal}
-          >
-            Log In
-          </button>
-        </div>
-        <div>
-          <button className="header__button" type="text" onClick={handleLogOut}>
-            Log Out
-          </button>
-        </div>
-        <div>
-          <button
-            className="header__button"
-            type="text"
-            onClick={onCreateModal}
-          >
-            + Add Clothes
-          </button>
-        </div>
-        <Link to="/profile">{userData.name}</Link>
-        <div>
-          <img src={avatar} alt="profile-pic" />
-        </div>
+        {isLoggedIn ? (
+          <div>
+            <div>
+              <button
+                className="header__button"
+                type="text"
+                onClick={handleLogOut}
+              >
+                Log Out
+              </button>
+            </div>
+            <div>
+              <button
+                className="header__button"
+                type="text"
+                onClick={onCreateModal}
+              >
+                + Add Clothes
+              </button>
+            </div>
+            <Link to="/profile">{userData.name}</Link>
+            <div className="header__avatar-logo">
+              <img src={avatar} alt="profile-pic" />
+            </div>
+          </div>
+        ) : (
+          <div>
+            <div>
+              <button
+                className="header__button"
+                type="text"
+                onClick={openRegisterModal}
+              >
+                Sign Up
+              </button>
+            </div>
+            <div>
+              <button
+                className="header__button"
+                type="text"
+                onClick={openLoginModal}
+              >
+                Log In
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </header>
   );
