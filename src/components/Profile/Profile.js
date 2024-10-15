@@ -3,7 +3,12 @@ import ClothesSection from "../ClothesSection/ClothesSection";
 import SideBar from "../SideBar/SideBar";
 import "./Profile.css";
 
-function Profile({ onSelectedCard, onCreateModal, clothingItems }) {
+function Profile({
+  onSelectedCard,
+  onCreateModal,
+  clothingItems,
+  currentUser,
+}) {
   return (
     <div className="profile">
       <SideBar />
@@ -11,6 +16,7 @@ function Profile({ onSelectedCard, onCreateModal, clothingItems }) {
         onSelectedCard={onSelectedCard}
         clothingItems={clothingItems}
         onCreateModal={onCreateModal}
+        currentUser={currentUser}
       />
     </div>
   );

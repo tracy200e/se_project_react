@@ -1,7 +1,12 @@
 import ItemCard from "../ItemCard/ItemCard";
 import "./ClothesSection.css";
 
-const ClothesSection = ({ onSelectedCard, onCreateModal, clothingItems }) => {
+const ClothesSection = ({
+  onSelectedCard,
+  onCreateModal,
+  clothingItems,
+  currentUser,
+}) => {
   return (
     <div className="clothes-section">
       <div className="clothes-section__header">
@@ -16,15 +21,21 @@ const ClothesSection = ({ onSelectedCard, onCreateModal, clothingItems }) => {
           </button>
         </div>
       </div>
-      <section className="clothes-section_cards">
-        {clothingItems.map((clothingItem) => (
-          <ItemCard
-            key={clothingItem._id}
-            clothingItem={clothingItem}
-            onSelectedCard={onSelectedCard}
-          />
-        ))}
-      </section>
+      {clothingItems.length && currentUser && currentUser._id ? (
+        <section className="clothes-section_cards">
+          {clothingItems.map((clothingItem) =>
+            clothingItem.owner === currentUser._id ? (
+              <ItemCard
+                key={clothingItem._id}
+                clothingItem={clothingItem}
+                onSelectedCard={onSelectedCard}
+              />
+            ) : null
+          )}
+        </section>
+      ) : (
+        <div>There are no items yet! Add new ones now.</div>
+      )}
     </div>
   );
 };
