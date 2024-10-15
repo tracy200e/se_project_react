@@ -1,9 +1,8 @@
 import "./Header.css";
 import { Link, useHistory } from "react-router-dom";
 import logo from "../../images/logo.svg";
-import avatar from "../../images/avatar.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 
 const Header = ({
   onCreateModal,
@@ -15,6 +14,9 @@ const Header = ({
 }) => {
   const [currentDate, setCurrentDate] = useState("");
   const history = useHistory();
+  const initial = currentUser.name
+    ? Array.from(currentUser.name)[0].toUpperCase()
+    : "";
 
   const handleLogOut = () => {
     localStorage.removeItem("jwt");
@@ -47,10 +49,10 @@ const Header = ({
           {currentDate}, {city}
         </div>
       </div>
-      <div class="header__navigation">
+      <div className="header__navigation">
         <ToggleSwitch />
         {isLoggedIn ? (
-          <div class="header__navigation">
+          <div className="header__navigation">
             <button
               className="header__button"
               type="text"
@@ -66,32 +68,34 @@ const Header = ({
               + Add Clothes
             </button>
             <Link to="/profile">{currentUser.name}</Link>
-            <img
-              className="header__avatar-logo"
-              src={currentUser.avatar}
-              alt="avatar"
-            />
+            <div>
+              {currentUser.avatar ? (
+                <img
+                  className="header__avatar-logo"
+                  src={currentUser.avatar}
+                  alt="avatar"
+                />
+              ) : (
+                <div className="header__avatar-logo">{initial}</div>
+              )}
+            </div>
           </div>
         ) : (
-          <div>
-            <div>
-              <button
-                className="header__button"
-                type="text"
-                onClick={openRegisterModal}
-              >
-                Sign Up
-              </button>
-            </div>
-            <div>
-              <button
-                className="header__button"
-                type="text"
-                onClick={openLoginModal}
-              >
-                Log In
-              </button>
-            </div>
+          <div className="header__navigation">
+            <button
+              className="header__button"
+              type="text"
+              onClick={openRegisterModal}
+            >
+              Sign Up
+            </button>
+            <button
+              className="header__button"
+              type="text"
+              onClick={openLoginModal}
+            >
+              Log In
+            </button>
           </div>
         )}
       </div>
