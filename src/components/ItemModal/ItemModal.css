@@ -16,7 +16,7 @@
     justify-content: space-between;
 }
 
-.modal__delete-button {
+.modal-item__delete-button {
     border: none;
     background-color: transparent;
     font-family: 'Cabinet Grotesk';
@@ -26,4 +26,12 @@
     line-height: 24px;
     color: #FF4D00;
     cursor: pointer;
+}
+
+.modal-item__delete-button_visible {
+    display: block;
+}
+
+.modal-item__delete-button_hidden {
+    display: none;
 }

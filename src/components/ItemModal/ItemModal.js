@@ -1,10 +1,16 @@
 import "./ItemModal.css";
 import { Modal } from "../Modal/Modal";
 
-const ItemModal = ({ selectedCard, onClose, deleteItem }) => {
+const ItemModal = ({ selectedCard, onClose, deleteItem, currentUser }) => {
   const handleDeleteItem = () => {
     deleteItem(selectedCard._id);
   };
+  const isOwn = selectedCard.owner === currentUser._id;
+  const itemDeleteClassName = `modal-item__delete-button ${
+    isOwn
+      ? "modal-item__delete-button_visible"
+      : "modal-item__delete-button_hidden"
+  }`;
 
   return (
     <Modal onClose={onClose}>
@@ -18,7 +24,7 @@ const ItemModal = ({ selectedCard, onClose, deleteItem }) => {
       <div className="modal__header">
         <h3>{selectedCard.name}</h3>
         <button
-          className="modal__delete-button"
+          className={itemDeleteClassName}
           type="button"
           onClick={handleDeleteItem}
         >
