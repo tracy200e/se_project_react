@@ -79,7 +79,7 @@ const RegisterModal = ({
       </div>
       <div className="form__input">
         <label>
-          Avatar URL*
+          Avatar URL
           <input
             type="url"
             name="avatar"
