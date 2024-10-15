@@ -3,7 +3,6 @@ import { Link, useHistory } from "react-router-dom";
 import logo from "../../images/logo.svg";
 import avatar from "../../images/avatar.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
-import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { useState, useEffect, useContext } from "react";
 
 const Header = ({
@@ -12,8 +11,8 @@ const Header = ({
   openLoginModal,
   city,
   isLoggedIn,
+  currentUser,
 }) => {
-  const userData = useContext(CurrentUserContext);
   const [currentDate, setCurrentDate] = useState("");
   const history = useHistory();
 
@@ -48,32 +47,30 @@ const Header = ({
           {currentDate}, {city}
         </div>
       </div>
-      <div>
+      <div class="header__navigation">
         <ToggleSwitch />
         {isLoggedIn ? (
-          <div>
-            <div>
-              <button
-                className="header__button"
-                type="text"
-                onClick={handleLogOut}
-              >
-                Log Out
-              </button>
-            </div>
-            <div>
-              <button
-                className="header__button"
-                type="text"
-                onClick={onCreateModal}
-              >
-                + Add Clothes
-              </button>
-            </div>
-            <Link to="/profile">{userData.name}</Link>
-            <div className="header__avatar-logo">
-              <img src={avatar} alt="profile-pic" />
-            </div>
+          <div class="header__navigation">
+            <button
+              className="header__button"
+              type="text"
+              onClick={handleLogOut}
+            >
+              Log Out
+            </button>
+            <button
+              className="header__button"
+              type="text"
+              onClick={onCreateModal}
+            >
+              + Add Clothes
+            </button>
+            <Link to="/profile">{currentUser.name}</Link>
+            <img
+              className="header__avatar-logo"
+              src={currentUser.avatar}
+              alt="avatar"
+            />
           </div>
         ) : (
           <div>

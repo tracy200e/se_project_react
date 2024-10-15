@@ -145,6 +145,7 @@ function App() {
             openLoginModal={() => handleOpenModal("login")}
             city={currentCity}
             isLoggedIn={isLoggedIn}
+            currentUser={currentUser}
           />
           <Main
             weatherTemp={temp}
