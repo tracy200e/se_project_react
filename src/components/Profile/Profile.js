@@ -1,6 +1,5 @@
 import React from "react";
 import ClothesSection from "../ClothesSection/ClothesSection";
-import SideBar from "../SideBar/SideBar";
 import "./Profile.css";
 
 function Profile({
@@ -10,8 +9,7 @@ function Profile({
   currentUser,
 }) {
   return (
-    <div className="profile">
-      <SideBar />
+    <div>
       <ClothesSection
         onSelectedCard={onSelectedCard}
         clothingItems={clothingItems}
