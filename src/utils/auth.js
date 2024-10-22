@@ -32,3 +32,14 @@ export const checkUserToken = (token) => {
     },
   });
 };
+
+export const editUserProfile = (newData, token) => {
+  return request(`${baseUrl}/users/me`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(newData),
+  });
+};
