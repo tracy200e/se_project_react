@@ -1,6 +1,27 @@
 .side-bar {
     display: flex;
-    align-items: center;
     gap: 20px;
-    padding-right: 205px;
+    flex-direction: column;
+}
+
+.side-bar__menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.side-bar__menu-button {
+    cursor: pointer;
+}
+
+.side-bar__profile {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.side-bar__profile-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
 }
