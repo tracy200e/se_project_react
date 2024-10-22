@@ -17,6 +17,13 @@
     padding: 0;
 }
 
+.profile-page {
+    display: flex;
+    max-width: 1440px;
+    padding: 40px;
+    gap: 100px;
+}
+
 .weather {
     position: relative;
 }
