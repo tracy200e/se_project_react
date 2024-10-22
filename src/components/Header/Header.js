@@ -1,5 +1,5 @@
 import "./Header.css";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from "../../images/logo.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { useState, useEffect } from "react";
@@ -13,14 +13,13 @@ const Header = ({
   currentUser,
 }) => {
   const [currentDate, setCurrentDate] = useState("");
-  const history = useHistory();
   const initial = currentUser.name
     ? Array.from(currentUser.name)[0].toUpperCase()
     : "";
 
   const handleLogOut = () => {
     localStorage.removeItem("jwt");
-    history.push("/signin");
+    window.location.replace("/signin");
   };
 
   useEffect(() => {
