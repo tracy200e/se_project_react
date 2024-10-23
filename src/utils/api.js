@@ -36,12 +36,34 @@ export function getItems() {
 }
 
 // Delete item
-export function deleteItems(_id) {
-  return request(`${baseUrl}/items/${_id}`, {
+export function deleteItems(id) {
+  return request(`${baseUrl}/items/${id}`, {
     method: "DELETE",
     headers: {
       "content-type": "application/json",
       authorization: `Bearer ${localStorage.getItem("jwt")}`,
+    },
+  });
+}
+
+// Like item
+export function addCardLike(id, token) {
+  return request(`${baseUrl}/items/${id}/likes`, {
+    method: "PUT",
+    headers: {
+      "content-type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+  });
+}
+
+// Like item
+export function removeCardLike(id, token) {
+  return request(`${baseUrl}/items/${id}/likes`, {
+    method: "DELETE",
+    headers: {
+      "content-type": "application/json",
+      authorization: `Bearer ${token}`,
     },
   });
 }

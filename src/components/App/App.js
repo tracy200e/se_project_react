@@ -9,7 +9,13 @@ import { getForecastWeather, parseWeatherData } from "../../utils/weatherApi";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 import { Switch, Route, useHistory } from "react-router-dom";
 import AddItemModal from "../AddItemModal/AddItemModal";
-import { addItems, getItems, deleteItems } from "../../utils/api";
+import {
+  addItems,
+  getItems,
+  deleteItems,
+  addCardLike,
+  removeCardLike,
+} from "../../utils/api";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
@@ -35,6 +41,7 @@ function App() {
     _id: "",
   });
   const history = useHistory();
+
   const handleRegistration = ({ email, password, name, avatar }) => {
     return auth
       .signUp({ email, password, name, avatar })
@@ -58,6 +65,16 @@ function App() {
         window.location.replace("/profile");
       })
       .then(() => handleCloseModal("/"))
+      .catch(console.error);
+  };
+
+  const handleEditProfile = ({ name, avatar }) => {
+    const token = localStorage.getItem("jwt");
+    return auth
+      .editUserProfile({ name, avatar }, token)
+      .then(() => {
+        window.location.replace("/profile");
+      })
       .catch(console.error);
   };
 
@@ -94,6 +111,7 @@ function App() {
   const handleSelectedCard = (card) => {
     setActiveModal("preview");
     setSelectedCard(card);
+    console.log(card);
   };
 
   const handleAddItemSubmit = (item) => {
@@ -124,6 +142,27 @@ function App() {
 
   const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
+  };
+
+  const handleCardLike = ({ id, isLiked }) => {
+    const token = localStorage.getItem("jwt");
+    isLiked
+      ? addCardLike(id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((card) => (card._id === id ? updatedCard : card))
+            );
+            console.log(updatedCard);
+          })
+          .catch((error) => console.log(error))
+      : removeCardLike(id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((card) => (card._id === id ? updatedCard : card))
+            );
+            console.log(updatedCard);
+          })
+          .catch((error) => console.log(error));
   };
 
   useEffect(() => {
@@ -166,6 +205,7 @@ function App() {
                 weatherTemp={temp}
                 onSelectedCard={handleSelectedCard}
                 clothingItems={clothingItems}
+                onCardLike={handleCardLike}
               />
               <RegisterModal
                 handleRegistration={handleRegistration}
@@ -177,6 +217,7 @@ function App() {
                 weatherTemp={temp}
                 onSelectedCard={handleSelectedCard}
                 clothingItems={clothingItems}
+                onCardLike={handleCardLike}
               />
               <LoginModal
                 handleCloseModal={() => handleCloseModal("/")}
@@ -196,6 +237,7 @@ function App() {
                   onCreateModal={() => handleOpenModal("create")}
                   clothingItems={clothingItems}
                   currentUser={currentUser}
+                  onCardLike={handleCardLike}
                 />
               </div>
             </ProtectedRoute>
@@ -204,6 +246,7 @@ function App() {
                 weatherTemp={temp}
                 onSelectedCard={handleSelectedCard}
                 clothingItems={clothingItems}
+                onCardLike={handleCardLike}
               />
             </Route>
           </Switch>
@@ -228,6 +271,7 @@ function App() {
           {activeModal === "update" && (
             <EditProfileModal
               onClose={() => handleCloseModal("/profile/edit")}
+              handleEditProfile={handleEditProfile}
             />
           )}
         </div>

@@ -7,6 +7,7 @@ function Profile({
   onCreateModal,
   clothingItems,
   currentUser,
+  onCardLike,
 }) {
   return (
     <div>
@@ -15,6 +16,7 @@ function Profile({
         clothingItems={clothingItems}
         onCreateModal={onCreateModal}
         currentUser={currentUser}
+        onCardLike={onCardLike}
       />
     </div>
   );

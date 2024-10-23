@@ -6,6 +6,7 @@ const ClothesSection = ({
   onCreateModal,
   clothingItems,
   currentUser,
+  onCardLike,
 }) => {
   return (
     <div className="clothes-section">
@@ -29,6 +30,7 @@ const ClothesSection = ({
                 key={clothingItem._id}
                 clothingItem={clothingItem}
                 onSelectedCard={onSelectedCard}
+                onCardLike={onCardLike}
               />
             ) : null
           )}
