@@ -1,5 +1,7 @@
 # What To Wear React ('WTWR') App
 
+Link to backend code: https://github.com/tracy200e/se_project_express
+
 ## Description
 
 This app suggests users what to wear based on their local weather forcast of the day they log into the app. Users can view, add and delete their own clothing items in their account.
@@ -9,6 +11,7 @@ This app suggests users what to wear based on their local weather forcast of the
 This app is built using React, a JavaScript library.
 
 ## How does it look?
+
 ![Main Page Design](/public/images/main-page-design.png)
 
 # Getting Started with Create React App
