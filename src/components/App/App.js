@@ -147,23 +147,25 @@ function App() {
   const handleCardLike = ({ _id }, isLiked, setIsLiked) => {
     const token = localStorage.getItem("jwt");
     console.log(_id, isLiked);
-    !isLiked
-      ? addCardLike(_id, token, isLiked, setIsLiked)
-          .then((updatedCard) => {
-            setClothingItems((cards) =>
-              cards.map((card) => (card.id === _id ? updatedCard.data : card))
-            );
-            console.log(updatedCard);
-          })
-          .catch((error) => console.log(error))
-      : removeCardLike(_id, token, isLiked, setIsLiked)
-          .then((updatedCard) => {
-            setClothingItems((cards) =>
-              cards.map((card) => (card.id === _id ? updatedCard.data : card))
-            );
-            console.log(updatedCard);
-          })
-          .catch((error) => console.log(error));
+    if (isLiked) {
+      addCardLike(_id, token, isLiked, setIsLiked)
+        .then((updatedCard) => {
+          setClothingItems((cards) =>
+            cards.map((card) => (card.id === _id ? updatedCard.data : card))
+          );
+          console.log(updatedCard);
+        })
+        .catch((error) => console.log(error));
+    } else {
+      removeCardLike(_id, token, isLiked, setIsLiked)
+        .then((updatedCard) => {
+          setClothingItems((cards) =>
+            cards.map((card) => (card.id === _id ? updatedCard.data : card))
+          );
+          console.log(updatedCard);
+        })
+        .catch((error) => console.log(error));
+    }
   };
 
   useEffect(() => {
