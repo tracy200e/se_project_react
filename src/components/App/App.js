@@ -144,21 +144,22 @@ function App() {
     setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
   };
 
-  const handleCardLike = ({ id, isLiked }) => {
+  const handleCardLike = ({ _id }, isLiked, setIsLiked) => {
     const token = localStorage.getItem("jwt");
-    isLiked
-      ? addCardLike(id, token)
+    console.log(_id, isLiked);
+    !isLiked
+      ? addCardLike(_id, token, isLiked, setIsLiked)
           .then((updatedCard) => {
             setClothingItems((cards) =>
-              cards.map((card) => (card._id === id ? updatedCard : card))
+              cards.map((card) => (card.id === _id ? updatedCard.data : card))
             );
             console.log(updatedCard);
           })
           .catch((error) => console.log(error))
-      : removeCardLike(id, token)
+      : removeCardLike(_id, token, isLiked, setIsLiked)
           .then((updatedCard) => {
             setClothingItems((cards) =>
-              cards.map((card) => (card._id === id ? updatedCard : card))
+              cards.map((card) => (card.id === _id ? updatedCard.data : card))
             );
             console.log(updatedCard);
           })

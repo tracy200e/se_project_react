@@ -47,23 +47,23 @@ export function deleteItems(id) {
 }
 
 // Like item
-export function addCardLike(id, token) {
+export function addCardLike(id, token, isLiked, setIsLiked) {
   return request(`${baseUrl}/items/${id}/likes`, {
     method: "PUT",
     headers: {
       "content-type": "application/json",
       authorization: `Bearer ${token}`,
     },
-  });
+  }).then(setIsLiked(!isLiked));
 }
 
 // Like item
-export function removeCardLike(id, token) {
+export function removeCardLike(id, token, isLiked, setIsLiked) {
   return request(`${baseUrl}/items/${id}/likes`, {
     method: "DELETE",
     headers: {
       "content-type": "application/json",
       authorization: `Bearer ${token}`,
     },
-  });
+  }).then(setIsLiked(!isLiked));
 }
