@@ -229,18 +229,16 @@ function App() {
             </Route>
             <ProtectedRoute isLoggedIn={isLoggedIn} path="/profile">
               <div className="profile-page">
-                <SideBar
-                  handleLogOut={handleLogOut}
-                  openEditModal={() =>
-                    handleOpenModal("update", "/profile/edit")
-                  }
-                />
                 <Profile
                   onSelectedCard={handleSelectedCard}
                   onCreateModal={() => handleOpenModal("create")}
                   clothingItems={clothingItems}
                   currentUser={currentUser}
                   onCardLike={handleCardLike}
+                  handleLogOut={handleLogOut}
+                  openEditModal={() =>
+                    handleOpenModal("update", "/profile/edit")
+                  }
                 />
               </div>
             </ProtectedRoute>
