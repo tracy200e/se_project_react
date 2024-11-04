@@ -61,9 +61,7 @@ function App() {
         localStorage.setItem("jwt", data.token);
         checkToken();
         console.log(data);
-        window.location.replace("/profile");
       })
-      .then(() => handleCloseModal("/"))
       .catch(console.error);
   };
 
@@ -71,15 +69,15 @@ function App() {
     const token = localStorage.getItem("jwt");
     return auth
       .editUserProfile({ name, avatar }, token)
-      .then(() => {
-        window.location.replace("/profile");
+      .then((updatedUser) => {
+        setCurrentUser(updatedUser);
+        handleCloseModal();
       })
       .catch(console.error);
   };
 
   const handleLogOut = () => {
     localStorage.removeItem("jwt");
-    window.location.replace("/signin");
   };
 
   const checkToken = () => {
@@ -89,6 +87,8 @@ function App() {
         if (res) {
           setCurrentUser(res);
           setIsLoggedIn(true);
+          handleCloseModal();
+          history.push("/profile");
         }
         setIsLoading(false);
       });
@@ -99,12 +99,10 @@ function App() {
 
   const handleOpenModal = (modalType, path) => {
     setActiveModal(modalType);
-    history.push(path);
   };
 
-  const handleCloseModal = ({ path }) => {
+  const handleCloseModal = () => {
     setActiveModal("");
-    history.push(path);
   };
 
   const handleSelectedCard = (card) => {
@@ -145,7 +143,6 @@ function App() {
 
   const handleCardLike = ({ _id }, isLiked, setIsLiked) => {
     const token = localStorage.getItem("jwt");
-    console.log(_id, isLiked);
     if (isLiked) {
       addCardLike(_id, token, isLiked, setIsLiked)
         .then((updatedCard) => {
@@ -195,8 +192,8 @@ function App() {
         <div className="app_page">
           <Header
             onCreateModal={() => handleOpenModal("create")}
-            openRegisterModal={() => handleOpenModal("register", "/signup")}
-            openLoginModal={() => handleOpenModal("login", "/signin")}
+            openRegisterModal={() => handleOpenModal("register")}
+            openLoginModal={() => handleOpenModal("login")}
             city={currentCity}
             isLoggedIn={isLoggedIn}
             currentUser={currentUser}
