@@ -28,15 +28,13 @@ const ItemCard = ({ clothingItem, onSelectedCard, onCardLike }) => {
       />
       <div className="card__title">
         <h3 className="card__name">{clothingItem.name}</h3>
-        {currentUser ? (
+        {currentUser._id ? (
           <img
             src={isLiked ? activeLikeButton : likeButton}
             alt="like button"
             onClick={handleCardLike}
           />
-        ) : (
-          <></>
-        )}
+        ) : null}
       </div>
     </div>
   );
