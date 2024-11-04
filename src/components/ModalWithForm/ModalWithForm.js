@@ -1,5 +1,6 @@
 import "./ModalWithForm.css";
 import { Modal } from "../Modal/Modal";
+import { Link } from "react-router-dom";
 
 const ModalWithForm = ({
   children,
@@ -21,9 +22,9 @@ const ModalWithForm = ({
           <button type="submit" className="modal__submit-button">
             {buttonText}
           </button>
-          <a className="modal__redirect-link" href={linkHref}>
+          <Link className="modal__redirect-link" to={linkHref}>
             {linkText}
-          </a>
+          </Link>
         </div>
       </form>
     </Modal>
