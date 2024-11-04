@@ -180,7 +180,7 @@ function App() {
         setClothingItems(item);
       })
       .catch((error) => console.error(`Error: ${error.status}`));
-  }, []);
+  });
 
   if (isLoading) return null;
 
