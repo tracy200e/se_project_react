@@ -22,7 +22,13 @@ const ModalWithForm = ({
           <button type="submit" className="modal__submit-button">
             {buttonText}
           </button>
-          <Link className="modal__redirect-link" to={linkHref}>
+          <Link
+            className="modal__redirect-link"
+            to={linkHref}
+            onClick={() => {
+              onClose();
+            }}
+          >
             {linkText}
           </Link>
         </div>
