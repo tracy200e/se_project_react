@@ -196,7 +196,7 @@ function App() {
       >
         <div className="app_page">
           <Header
-            onCreateModal={() => handleOpenModal("create", "/items/add")}
+            onCreateModal={() => handleOpenModal("create", "/items")}
             openRegisterModal={() => handleOpenModal("register", "/signup")}
             openLoginModal={() => handleOpenModal("login", "/signin")}
             city={currentCity}
