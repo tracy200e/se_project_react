@@ -3,7 +3,7 @@ import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Profile from "../Profile/Profile";
 import Footer from "../Footer/Footer";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import ItemModal from "../ItemModal/ItemModal";
 import { getForecastWeather, parseWeatherData } from "../../utils/weatherApi";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
@@ -39,6 +39,7 @@ function App() {
     avatar: "",
     _id: "",
   });
+
   const history = useHistory();
 
   const handleRegistration = ({ email, password, name, avatar }) => {
@@ -80,29 +81,33 @@ function App() {
     localStorage.removeItem("jwt");
   };
 
-  const checkToken = () => {
+  const checkToken = useCallback(() => {
     const jwt = localStorage.getItem("jwt");
     if (jwt) {
-      auth.checkUserToken(jwt).then((res) => {
-        if (res) {
-          setCurrentUser(res);
-          setIsLoggedIn(true);
-          handleCloseModal();
-          history.push("/profile");
-        }
-        setIsLoading(false);
-      });
+      auth
+        .checkUserToken(jwt)
+        .then((res) => {
+          if (res) {
+            setCurrentUser(res);
+            setIsLoggedIn(true);
+            handleCloseModal("/profile");
+          }
+          setIsLoading(false);
+        })
+        .catch(() => console.log("Not Authorised"));
     } else {
       setIsLoading(false);
     }
-  };
+  }, [history]);
 
-  const handleOpenModal = (modalType, path) => {
+  const handleOpenModal = (modalType, url) => {
     setActiveModal(modalType);
+    history.push(url);
   };
 
-  const handleCloseModal = () => {
+  const handleCloseModal = (url) => {
     setActiveModal("");
+    history.push(url);
   };
 
   const handleSelectedCard = (card) => {
@@ -173,14 +178,14 @@ function App() {
         setTemp(temperature);
         setCurrentCity(data.name);
       })
-      .catch((error) => console.error(`Error: ${error.status}`));
+      .catch((error) => console.error(`Error: ${error}`));
 
     getItems()
       .then((item) => {
         setClothingItems(item);
       })
-      .catch((error) => console.error(`Error: ${error.status}`));
-  });
+      .catch((error) => console.error(`Error: ${error}`));
+  }, [checkToken]);
 
   if (isLoading) return null;
 
@@ -191,26 +196,14 @@ function App() {
       >
         <div className="app_page">
           <Header
-            onCreateModal={() => handleOpenModal("create")}
-            openRegisterModal={() => handleOpenModal("register")}
-            openLoginModal={() => handleOpenModal("login")}
+            onCreateModal={() => handleOpenModal("create", "/items/add")}
+            openRegisterModal={() => handleOpenModal("register", "/signup")}
+            openLoginModal={() => handleOpenModal("login", "/signin")}
             city={currentCity}
             isLoggedIn={isLoggedIn}
             currentUser={currentUser}
           />
           <Switch>
-            <Route path="/signup">
-              <Main
-                weatherTemp={temp}
-                onSelectedCard={handleSelectedCard}
-                clothingItems={clothingItems}
-                onCardLike={handleCardLike}
-              />
-              <RegisterModal
-                handleRegistration={handleRegistration}
-                handleCloseModal={() => handleCloseModal("/")}
-              />
-            </Route>
             <Route path="/signin">
               <Main
                 weatherTemp={temp}
@@ -223,11 +216,23 @@ function App() {
                 handleLogin={handleLogin}
               />
             </Route>
+            <Route path="/signup">
+              <Main
+                weatherTemp={temp}
+                onSelectedCard={handleSelectedCard}
+                clothingItems={clothingItems}
+                onCardLike={handleCardLike}
+              />
+              <RegisterModal
+                handleRegistration={handleRegistration}
+                handleCloseModal={() => handleCloseModal("/")}
+              />
+            </Route>
             <ProtectedRoute isLoggedIn={isLoggedIn} path="/profile">
               <div className="profile-page">
                 <Profile
                   onSelectedCard={handleSelectedCard}
-                  onCreateModal={() => handleOpenModal("create")}
+                  onCreateModal={() => handleOpenModal("create", "/items/add")}
                   clothingItems={clothingItems}
                   currentUser={currentUser}
                   onCardLike={handleCardLike}
@@ -269,6 +274,18 @@ function App() {
             <EditProfileModal
               onClose={() => handleCloseModal("/profile/edit")}
               handleEditProfile={handleEditProfile}
+            />
+          )}
+          {activeModal === "register" && (
+            <RegisterModal
+              handleRegistration={handleRegistration}
+              handleCloseModal={() => handleCloseModal("/")}
+            />
+          )}
+          {activeModal === "login" && (
+            <LoginModal
+              handleCloseModal={() => handleCloseModal("/")}
+              handleLogin={handleLogin}
             />
           )}
         </div>
