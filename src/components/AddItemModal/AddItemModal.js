@@ -52,7 +52,6 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
             type="url"
             name="link"
             minLength="1"
-            maxLength="70"
             value={imageUrl}
             onChange={handleUrlChange}
             className="form__text-input"
