@@ -72,7 +72,7 @@ function App() {
       .editUserProfile({ name, avatar }, token)
       .then((updatedUser) => {
         setCurrentUser(updatedUser);
-        handleCloseModal();
+        handleCloseModal("/profile");
       })
       .catch(console.error);
   };
@@ -121,7 +121,7 @@ function App() {
     addItems(item)
       .then(({ data }) => {
         setClothingItems([data, ...clothingItems]);
-        handleCloseModal("/");
+        handleCloseModal();
       })
       .catch((error) => {
         console.error(`Unable to add clothing item due to: ${error.status}`);
@@ -138,7 +138,7 @@ function App() {
           clothingItems.filter((clothingItem) => clothingItem._id !== _id)
         );
       })
-      .then(() => handleCloseModal("/profile"))
+      .then(() => handleCloseModal())
       .catch((error) => console.error(`Error: ${error.status}`));
   };
 
@@ -196,7 +196,7 @@ function App() {
       >
         <div className="app_page">
           <Header
-            onCreateModal={() => handleOpenModal("create", "/items")}
+            onCreateModal={() => handleOpenModal("create")}
             openRegisterModal={() => handleOpenModal("register", "/signup")}
             openLoginModal={() => handleOpenModal("login", "/signin")}
             city={currentCity}
@@ -256,7 +256,7 @@ function App() {
 
           {activeModal === "create" && (
             <AddItemModal
-              handleCloseModal={() => handleCloseModal("/")}
+              handleCloseModal={() => handleCloseModal()}
               isOpen={activeModal === "create"}
               onAddItem={handleAddItemSubmit}
               buttonText={isPending ? "Adding Garment..." : "Saved"}
@@ -265,14 +265,14 @@ function App() {
           {activeModal === "preview" && (
             <ItemModal
               selectedCard={selectedCard}
-              onClose={() => handleCloseModal("/")}
+              onClose={() => handleCloseModal()}
               deleteItem={handleDeleteItem}
               currentUser={currentUser}
             />
           )}
           {activeModal === "update" && (
             <EditProfileModal
-              onClose={() => handleCloseModal("/profile/edit")}
+              onClose={() => handleCloseModal("/profile")}
               handleEditProfile={handleEditProfile}
             />
           )}
