@@ -57,7 +57,6 @@ const EditProfileModal = ({ isOpen = true, onClose, handleEditProfile }) => {
             type="url"
             name="avatar"
             minLength="1"
-            maxLength="70"
             value={newData.avatar}
             className="form__text-input"
             onChange={handleChange}
