@@ -232,7 +232,7 @@ function App() {
               <div className="profile-page">
                 <Profile
                   onSelectedCard={handleSelectedCard}
-                  onCreateModal={() => handleOpenModal("create", "/items/add")}
+                  onCreateModal={() => handleOpenModal("create")}
                   clothingItems={clothingItems}
                   currentUser={currentUser}
                   onCardLike={handleCardLike}
