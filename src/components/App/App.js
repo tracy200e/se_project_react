@@ -156,7 +156,7 @@ function App() {
           );
           console.log(updatedCard);
         })
-        .catch((error) => console.log(error));
+        .catch(console.error);
     } else {
       removeCardLike(_id, token, isLiked, setIsLiked)
         .then((updatedCard) => {
@@ -165,7 +165,7 @@ function App() {
           );
           console.log(updatedCard);
         })
-        .catch((error) => console.log(error));
+        .catch(console.error);
     }
   };
 
@@ -178,13 +178,13 @@ function App() {
         setTemp(temperature);
         setCurrentCity(data.name);
       })
-      .catch((error) => console.error(`Error: ${error}`));
+      .catch(console.error);
 
     getItems()
       .then((item) => {
         setClothingItems(item);
       })
-      .catch((error) => console.error(`Error: ${error}`));
+      .catch(console.error);
   }, [checkToken]);
 
   if (isLoading) return null;
@@ -201,7 +201,6 @@ function App() {
             openLoginModal={() => handleOpenModal("login", "/signin")}
             city={currentCity}
             isLoggedIn={isLoggedIn}
-            currentUser={currentUser}
           />
           <Switch>
             <Route path="/signin">
@@ -234,7 +233,6 @@ function App() {
                   onSelectedCard={handleSelectedCard}
                   onCreateModal={() => handleOpenModal("create")}
                   clothingItems={clothingItems}
-                  currentUser={currentUser}
                   onCardLike={handleCardLike}
                   handleLogOut={handleLogOut}
                   openEditModal={() =>
@@ -267,7 +265,6 @@ function App() {
               selectedCard={selectedCard}
               onClose={() => handleCloseModal()}
               deleteItem={handleDeleteItem}
-              currentUser={currentUser}
             />
           )}
           {activeModal === "update" && (

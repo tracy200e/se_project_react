@@ -2,16 +2,18 @@ import React from "react";
 import ClothesSection from "../ClothesSection/ClothesSection";
 import SideBar from "../SideBar/SideBar";
 import "./Profile.css";
+import { useContext } from "react";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-function Profile({
+const Profile = ({
   onSelectedCard,
   onCreateModal,
   clothingItems,
-  currentUser,
   onCardLike,
   handleLogOut,
   openEditModal,
-}) {
+}) => {
+  const currentUser = useContext(CurrentUserContext);
   return (
     <div className="profile">
       <SideBar handleLogOut={handleLogOut} openEditModal={openEditModal} />
@@ -24,6 +26,6 @@ function Profile({
       />
     </div>
   );
-}
+};
 
 export default Profile;

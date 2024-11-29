@@ -1,7 +1,10 @@
 import "./ItemModal.css";
 import { Modal } from "../Modal/Modal";
+import { useContext } from "react";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-const ItemModal = ({ selectedCard, onClose, deleteItem, currentUser }) => {
+const ItemModal = ({ selectedCard, onClose, deleteItem }) => {
+  const currentUser = useContext(CurrentUserContext);
   const handleDeleteItem = () => {
     deleteItem(selectedCard._id);
   };

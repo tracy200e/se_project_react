@@ -2,7 +2,8 @@ import "./Header.css";
 import { Link } from "react-router-dom";
 import logo from "../../images/logo.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 const Header = ({
   onCreateModal,
@@ -10,9 +11,9 @@ const Header = ({
   openLoginModal,
   city,
   isLoggedIn,
-  currentUser,
 }) => {
   const [currentDate, setCurrentDate] = useState("");
+  const currentUser = useContext(CurrentUserContext);
   const initial = currentUser.name
     ? Array.from(currentUser.name)[0].toUpperCase()
     : "";
