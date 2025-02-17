@@ -54,7 +54,7 @@ export function addCardLike(id, token, isLiked, setIsLiked) {
       "content-type": "application/json",
       authorization: `Bearer ${token}`,
     },
-  }).then(setIsLiked(!isLiked));
+  }).then(() => setIsLiked(!isLiked));
 }
 
 // Like item
@@ -65,5 +65,5 @@ export function removeCardLike(id, token, isLiked, setIsLiked) {
       "content-type": "application/json",
       authorization: `Bearer ${token}`,
     },
-  }).then(setIsLiked(!isLiked));
+  }).then(() => setIsLiked(!isLiked));
 }
