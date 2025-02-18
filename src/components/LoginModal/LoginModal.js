@@ -1,17 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import { useForm } from "../../hooks/useForm";
 
 const LoginModal = ({ handleCloseModal, isOpen = true, handleLogin }) => {
-  const [loginData, setLoginData] = useState({
+  const {
+    values: loginData,
+    handleChange,
+    setValues: setLoginData,
+  } = useForm({
     email: "",
     password: "",
   });
-
-  // Change function
-  const handleChange = (evt) => {
-    const { name, value } = evt.target;
-    setLoginData({ ...loginData, [name]: value });
-  };
 
   // Submit function
   const handleSubmit = (evt) => {
