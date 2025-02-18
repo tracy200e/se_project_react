@@ -29,7 +29,6 @@ function App() {
   const [temp, setTemp] = useState(0);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
-  const [isPending, setIsPending] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [currentCity, setCurrentCity] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -66,15 +65,23 @@ function App() {
       .catch(console.error);
   };
 
+  function handleSubmit(request) {
+    setIsLoading(true);
+    request()
+      .then(() => handleCloseModal())
+      .catch(console.error)
+      .finally(() => setIsLoading(false));
+  }
+
   const handleEditProfile = ({ name, avatar }) => {
     const token = localStorage.getItem("jwt");
-    return auth
-      .editUserProfile({ name, avatar }, token)
-      .then((updatedUser) => {
-        setCurrentUser(updatedUser);
-        handleCloseModal("/profile");
-      })
-      .catch(console.error);
+    handleSubmit(() => {
+      return auth
+        .editUserProfile({ name, avatar }, token)
+        .then((updatedUser) => {
+          setCurrentUser(updatedUser);
+        });
+    });
   };
 
   const handleLogOut = () => {
@@ -117,18 +124,11 @@ function App() {
   };
 
   const handleAddItemSubmit = (item) => {
-    setIsPending(true);
-    addItems(item)
-      .then(({ data }) => {
+    handleSubmit(() =>
+      addItems(item).then(({ data }) => {
         setClothingItems([data, ...clothingItems]);
-        handleCloseModal();
       })
-      .catch((error) => {
-        console.error(`Unable to add clothing item due to: ${error.status}`);
-      })
-      .finally(() => {
-        setIsPending(false);
-      });
+    );
   };
 
   const handleDeleteItem = (_id) => {
@@ -257,7 +257,7 @@ function App() {
               handleCloseModal={() => handleCloseModal()}
               isOpen={activeModal === "create"}
               onAddItem={handleAddItemSubmit}
-              buttonText={isPending ? "Adding Garment..." : "Saved"}
+              buttonText={isLoading ? "Adding Garment..." : "Saved"}
             />
           )}
           {activeModal === "preview" && (
