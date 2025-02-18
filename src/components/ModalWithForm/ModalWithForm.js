@@ -1,6 +1,6 @@
 import "./ModalWithForm.css";
 import { Modal } from "../Modal/Modal";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const ModalWithForm = ({
   children,
@@ -13,26 +13,30 @@ const ModalWithForm = ({
   isOpen = true,
   onSubmit,
 }) => {
+  const history = useHistory();
+
   return (
     <Modal name={name} onClose={onClose}>
       <h2 className="modal__title">{title}</h2>
       <form onSubmit={onSubmit}>
         {children}
         <div className="modal__submit-section">
-          <button type="submit" className="modal__submit-button">
+          <button
+            type="submit"
+            className="modal__button-text modal__submit-button"
+          >
             {buttonText}
           </button>
-          {linkHref ? (
-            <Link
-              className="modal__redirect-link"
-              to={linkHref}
-              onClick={() => {
-                onClose();
-              }}
-            >
-              {linkText}
-            </Link>
-          ) : null}
+          <button
+            type="button"
+            className="modal__button-text modal__redirect-link"
+            onClick={() => {
+              onClose();
+              history.push(linkHref);
+            }}
+          >
+            {linkText}
+          </button>
         </div>
       </form>
     </Modal>
