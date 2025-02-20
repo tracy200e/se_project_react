@@ -18,11 +18,6 @@ const Header = ({
     ? Array.from(currentUser.name)[0].toUpperCase()
     : "";
 
-  const handleLogOut = () => {
-    localStorage.removeItem("jwt");
-    window.location.replace("/signin");
-  };
-
   useEffect(() => {
     const getCurrentDate = () => {
       const date = new Date();
@@ -53,13 +48,6 @@ const Header = ({
         <ToggleSwitch />
         {isLoggedIn ? (
           <div className="header__navigation">
-            <button
-              className="header__button"
-              type="text"
-              onClick={handleLogOut}
-            >
-              Log Out
-            </button>
             <button
               className="header__button"
               type="text"
