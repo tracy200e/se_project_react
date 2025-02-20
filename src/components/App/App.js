@@ -203,30 +203,6 @@ function App() {
             isLoggedIn={isLoggedIn}
           />
           <Switch>
-            <Route path="/signin">
-              <Main
-                weatherTemp={temp}
-                onSelectedCard={handleSelectedCard}
-                clothingItems={clothingItems}
-                onCardLike={handleCardLike}
-              />
-              <LoginModal
-                handleCloseModal={() => handleCloseModal("/")}
-                handleLogin={handleLogin}
-              />
-            </Route>
-            <Route path="/signup">
-              <Main
-                weatherTemp={temp}
-                onSelectedCard={handleSelectedCard}
-                clothingItems={clothingItems}
-                onCardLike={handleCardLike}
-              />
-              <RegisterModal
-                handleRegistration={handleRegistration}
-                handleCloseModal={() => handleCloseModal("/")}
-              />
-            </Route>
             <ProtectedRoute isLoggedIn={isLoggedIn} path="/profile">
               <div className="profile-page">
                 <Profile
