@@ -5,13 +5,13 @@ import { useHistory } from "react-router-dom";
 const ModalWithForm = ({
   children,
   buttonText,
-  linkHref,
   linkText,
   title,
   onClose,
   name,
   isOpen = true,
   onSubmit,
+  handleTextButton,
 }) => {
   const history = useHistory();
 
@@ -32,7 +32,7 @@ const ModalWithForm = ({
             className="modal__button-text modal__redirect-link"
             onClick={() => {
               onClose();
-              history.push(linkHref);
+              handleTextButton();
             }}
           >
             {linkText}

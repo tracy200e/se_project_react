@@ -2,7 +2,12 @@ import React from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useForm } from "../../hooks/useForm";
 
-const LoginModal = ({ handleCloseModal, isOpen = true, handleLogin }) => {
+const LoginModal = ({
+  handleCloseModal,
+  activeModal,
+  handleLogin,
+  handleTextButton,
+}) => {
   const {
     values: loginData,
     handleChange,
@@ -28,8 +33,9 @@ const LoginModal = ({ handleCloseModal, isOpen = true, handleLogin }) => {
       linkText="or Sign Up"
       linkHref="/signup"
       onClose={handleCloseModal}
-      isOpen={isOpen}
+      isOpen={activeModal === "login"}
       onSubmit={handleSubmit}
+      handleTextButton={handleTextButton}
     >
       <div className="form__input">
         <label>

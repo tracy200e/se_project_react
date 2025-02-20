@@ -4,8 +4,9 @@ import { useForm } from "../../hooks/useForm";
 
 const RegisterModal = ({
   handleCloseModal,
-  isOpen = true,
+  activeModal,
   handleRegistration,
+  handleTextButton,
 }) => {
   const {
     values: registerData,
@@ -26,8 +27,9 @@ const RegisterModal = ({
       linkText="or Log In"
       linkHref="/signin"
       onClose={handleCloseModal}
-      isOpen={isOpen}
+      isOpen={activeModal === "register"}
       onSubmit={handleSubmit}
+      handleTextButton={handleTextButton}
     >
       <div className="form__input">
         <label>

@@ -86,6 +86,8 @@ function App() {
 
   const handleLogOut = () => {
     localStorage.removeItem("jwt");
+    setIsLoggedIn(false);
+    history.push("/");
   };
 
   const checkToken = useCallback(() => {
@@ -197,8 +199,8 @@ function App() {
         <div className="app_page">
           <Header
             onCreateModal={() => handleOpenModal("create")}
-            openRegisterModal={() => handleOpenModal("register", "/signup")}
-            openLoginModal={() => handleOpenModal("login", "/signin")}
+            openRegisterModal={() => handleOpenModal("register")}
+            openLoginModal={() => handleOpenModal("login")}
             city={currentCity}
             isLoggedIn={isLoggedIn}
           />
@@ -252,13 +254,17 @@ function App() {
           {activeModal === "register" && (
             <RegisterModal
               handleRegistration={handleRegistration}
+              activeModal={activeModal}
               handleCloseModal={() => handleCloseModal("/")}
+              handleTextButton={() => setActiveModal("login")}
             />
           )}
           {activeModal === "login" && (
             <LoginModal
               handleCloseModal={() => handleCloseModal("/")}
+              activeModal={activeModal}
               handleLogin={handleLogin}
+              handleTextButton={() => setActiveModal("register")}
             />
           )}
         </div>
