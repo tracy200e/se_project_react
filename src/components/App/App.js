@@ -150,7 +150,7 @@ function App() {
 
   const handleCardLike = ({ _id }, isLiked, setIsLiked) => {
     const token = localStorage.getItem("jwt");
-    if (isLiked) {
+    if (!isLiked) {
       addCardLike(_id, token, isLiked, setIsLiked)
         .then((updatedCard) => {
           setClothingItems((cards) =>
