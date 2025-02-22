@@ -99,7 +99,7 @@ function App() {
           if (res) {
             setCurrentUser(res);
             setIsLoggedIn(true);
-            handleCloseModal("/profile");
+            handleCloseModal();
           }
           setIsLoading(false);
         })
