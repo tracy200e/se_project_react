@@ -1,4 +1,4 @@
-export const baseUrl = "http://localhost:3001";
+import { BASE_URL } from "../utils/constants";
 
 // Check response and return response status if there's an error
 export function processServerResponse(res) {
@@ -15,7 +15,7 @@ export function request(url, options) {
 
 // Add item
 export function addItems(item) {
-  return request(`${baseUrl}/items`, {
+  return request(`${BASE_URL}/items`, {
     method: "POST",
     headers: {
       "content-type": "application/json",
@@ -27,7 +27,7 @@ export function addItems(item) {
 
 // Get item
 export function getItems() {
-  return request(`${baseUrl}/items`, {
+  return request(`${BASE_URL}/items`, {
     method: "GET",
     headers: {
       "content-type": "application/json",
@@ -37,7 +37,7 @@ export function getItems() {
 
 // Delete item
 export function deleteItems(id) {
-  return request(`${baseUrl}/items/${id}`, {
+  return request(`${BASE_URL}/items/${id}`, {
     method: "DELETE",
     headers: {
       "content-type": "application/json",
@@ -48,7 +48,7 @@ export function deleteItems(id) {
 
 // Like item
 export function addCardLike(id, token, isLiked, setIsLiked) {
-  return request(`${baseUrl}/items/${id}/likes`, {
+  return request(`${BASE_URL}/items/${id}/likes`, {
     method: "PUT",
     headers: {
       "content-type": "application/json",
@@ -59,7 +59,7 @@ export function addCardLike(id, token, isLiked, setIsLiked) {
 
 // Like item
 export function removeCardLike(id, token, isLiked, setIsLiked) {
-  return request(`${baseUrl}/items/${id}/likes`, {
+  return request(`${BASE_URL}/items/${id}/likes`, {
     method: "DELETE",
     headers: {
       "content-type": "application/json",

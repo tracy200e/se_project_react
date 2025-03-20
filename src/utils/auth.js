@@ -1,7 +1,8 @@
-import { baseUrl, request } from "./api";
+import { request } from "./api";
+import { BASE_URL } from "../utils/constants";
 
 export const signUp = ({ name, email, password, avatar }) => {
-  return request(`${baseUrl}/signup`, {
+  return request(`${BASE_URL}/signup`, {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -12,7 +13,7 @@ export const signUp = ({ name, email, password, avatar }) => {
 };
 
 export const signIn = ({ email, password }) => {
-  return request(`${baseUrl}/signin`, {
+  return request(`${BASE_URL}/signin`, {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -23,7 +24,7 @@ export const signIn = ({ email, password }) => {
 };
 
 export const checkUserToken = (token) => {
-  return request(`${baseUrl}/users/me`, {
+  return request(`${BASE_URL}/users/me`, {
     method: "GET",
     headers: {
       Accept: "application/json",
@@ -34,7 +35,7 @@ export const checkUserToken = (token) => {
 };
 
 export const editUserProfile = (newData, token) => {
-  return request(`${baseUrl}/users/me`, {
+  return request(`${BASE_URL}/users/me`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",

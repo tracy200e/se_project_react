@@ -56,3 +56,8 @@ export const weatherOptions = [
     type: "rain",
   },
 ];
+
+export const BASE_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://api.wtwr-2025.twilightparadox.com"
+    : "http://localhost:3001";
