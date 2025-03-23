@@ -8,11 +8,7 @@ const LoginModal = ({
   handleLogin,
   handleTextButton,
 }) => {
-  const {
-    values: loginData,
-    handleChange,
-    setValues: setLoginData,
-  } = useForm({
+  const { values: loginData, handleChange } = useForm({
     email: "",
     password: "",
   });

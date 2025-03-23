@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useForm } from "../../hooks/useForm";
 
@@ -8,11 +7,12 @@ const RegisterModal = ({
   handleRegistration,
   handleTextButton,
 }) => {
-  const {
-    values: registerData,
-    handleChange,
-    setValues: setRegisterData,
-  } = useForm({ email: "", password: "", name: "", avatar: "" });
+  const { values: registerData, handleChange } = useForm({
+    email: "",
+    password: "",
+    name: "",
+    avatar: "",
+  });
 
   // Submit function
   const handleSubmit = (evt) => {
